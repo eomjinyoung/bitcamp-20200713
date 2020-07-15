@@ -1,0 +1,74 @@
+[Visual Studio 설치]
+- 다운로드 후 더블 클릭하여 설치한다.
+
+[JDK 설치]
+- graalvm 다운로드 및 압축 해제
+- OS에 JDK 설치 경로를 등록
+  - OS 환경변수 설정창 열기
+  - JAVA_HOME이라는 이름으로 JDK 설치 경로 등록
+- OS에 JDK 도구 폴더 등록
+  - PATH 라는 환경변수에 java.exe, javac.exe 등이 있는
+  폴더를 등록해두면 아무곳(디렉토리)에서나 실행할 수 있다.
+
+[Eclipse IDE(Integrated Development Environment) 설치]
+- 다운로드 및 설치
+- 이클립스 실행
+    - 워크스페이스 디렉토리 설정
+    - c:\Users\bitcamp\eclipse-workspace
+- 이클립스 IDE 설정
+    - Window > Preferences 메뉴 선택
+    - General > Editors > Text Editors 선택
+        - 탭 크기 : 2
+        - 탭 대신 공백 삽입
+        - 한 줄 100칸
+        - 공백 문자를 특수 기호로 표시하기
+    - General > Workspace 선택
+        - Text file encoding : UTF-8
+    - Java > Installed JREs 선택
+        - graalvm-ce-java11
+    - Java > Code Style > Formatter 선택
+        - https://github.com/google/styleguide 사이트 방문
+        - eclipse-java-google-style.xml 파일 다운로드
+        - import 버튼 클릭 > 이 파일을 import 한다.
+    
+[scoop 패키지 매니저 설치]
+- scoop.sh 사이트 방문
+- 안내에 따라 설치한다.   
+
+[git 형상관리도구 설치]
+- scoop install git 실행
+
+[gradle 빌드도구 설치]
+- scoop install gradle 실행
+
+[Tomcat 설치]
+- c:\devtools 폴더에 압축을 푼다.
+- PATH 환경변수에 bin 폴더를 추가한다.
+
+[MariaDB 설치]
+- 다운로드 및 설치
+- 사용자 생성
+- 데이터베이스 생성
+- 사용자가 사용할 데이터베이스의 권한 설정
+- 테이블 생성
+- 예제 및 마스터 데이터 입력
+
+[작업 폴더를 git 서버에 업로드 하기]
+- github.com 에 회원 가입 및 로그인
+- git 저장소 생성
+- 로컬 작업 폴더를 git 저장소로 준비하기
+    - > git init 실행
+- git 저장소에 백업하지 않을 대상을 설정하기
+    - .gitignore 파일에 작성한다.
+    - 직접 대상을 지정하는 것은 번거롭다.
+    - gitignore.io 사이트의 도움을 받는다.
+- 현재 작업 파일을 백업 관리 대장에 등록하기 
+    - > git add .  <= 현재 폴더 및 모든 하위 폴더 포함
+- 백업 관리 대장에 등록되어 있는 파일을 백업하기
+    - > git commit -m "백업 정보"
+    - .git/ 디렉토리에 변경 내용이 저장된다.
+- 업로드할 서버 저장소의 위치를 설정한다.
+    - > git remote add origin https://github.com/eomjinyoung/bitcamp-20200713.git
+- 로컬 저장소에 백업한 것을 서버에 업로드하기
+    - > git push -u origin master
+    
