@@ -177,6 +177,14 @@ macOS 개발 환경 구축하기
     - > gradle run
   - 자바 프로젝트 빌드하기
     - > gradle build
-  - Eclipse IDE로 프로젝트 가져오기
 
+### 8일차(2020-07-22,수)
+
+- Gradle로 자바 프로젝트를 eclipse 프로젝트로 설정하기
+  - 'build.gradle' 빌드 스크립트 파일에 'eclipse' 플러그인 추가
+  - 이클립스 설정 파일 생성
+    - > gradle eclipse 
+- Eclipse IDE로 프로젝트 가져오기
+  - bitcamp-java-project 임포트 
+  - bitcamp-java-basic 임포트
 
