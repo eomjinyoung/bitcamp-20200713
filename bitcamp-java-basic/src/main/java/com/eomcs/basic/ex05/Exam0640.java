@@ -18,6 +18,5 @@ public class Exam0640 {
     // int result = 2 + 12;
     // int result = 14;
     System.out.printf("%d, %d\n", i, result);
-
   }
 }
