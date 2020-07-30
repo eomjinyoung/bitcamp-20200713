@@ -30,10 +30,8 @@ public class Exam0110 {
     if (age2 >= 19)
       if (age2 >= 65)
         System.out.println("지하철 무임승차 가능합니다.");
-      else
-        System.out.println("미성년입니다.");
     else
-      System.out.println("ok");
+      System.out.println("미성년입니다.");
 
     System.out.println("--------------------------");
 
