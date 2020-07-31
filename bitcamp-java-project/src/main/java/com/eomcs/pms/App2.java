@@ -5,6 +5,9 @@ import java.sql.Date;
 public class App2 {
 
   public static void main(String[] args) {
+    class Project {
+
+    }
 
     java.util.Scanner keyInput = new java.util.Scanner(System.in);
 

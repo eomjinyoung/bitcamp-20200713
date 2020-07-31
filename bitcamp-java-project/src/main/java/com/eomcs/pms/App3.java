@@ -5,6 +5,10 @@ import java.sql.Date;
 public class App3 {
 
   public static void main(String[] args) {
+    class Task {
+
+    }
+
     java.util.Scanner keyInput = new java.util.Scanner(System.in);
 
     final int LENGTH = 100;
