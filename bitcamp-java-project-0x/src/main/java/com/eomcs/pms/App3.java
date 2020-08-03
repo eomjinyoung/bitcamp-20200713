@@ -5,17 +5,21 @@ import java.sql.Date;
 public class App3 {
 
   public static void main(String[] args) {
+    class Task {
+      int no;
+      String content;
+      Date completedDate;
+      String state;
+      String worker;
+    }
+
     java.util.Scanner keyInput = new java.util.Scanner(System.in);
 
     final int LENGTH = 100;
 
     String project;
 
-    int[] no = new int[LENGTH];
-    String[] content = new String[LENGTH];
-    Date[] completedDate = new Date[LENGTH];
-    String[] state = new String[LENGTH];
-    String[] worker = new String[LENGTH];
+    Task[] tasks = new Task[LENGTH];
 
     int count = 0;
 
@@ -27,25 +31,29 @@ public class App3 {
     for (int i = 0; i < LENGTH; i++) {
       count++;
 
+      Task t = new Task();
+
       System.out.print("번호? ");
       String str = keyInput.nextLine();
-      no[i] = Integer.parseInt(str);
+      t.no = Integer.parseInt(str);
 
       System.out.print("내용? ");
-      content[i] = keyInput.nextLine();
+      t.content = keyInput.nextLine();
 
       System.out.print("완료일? ");
-      completedDate[i] = java.sql.Date.valueOf(keyInput.nextLine());
+      t.completedDate = java.sql.Date.valueOf(keyInput.nextLine());
 
       System.out.println("상태? ");
       System.out.println("0: 신규");
       System.out.println("1: 진행중");
       System.out.println("2: 완료");
       System.out.print("> ");
-      state[i] = keyInput.nextLine();
+      t.state = keyInput.nextLine();
 
       System.out.print("담당자? ");
-      worker[i] = keyInput.nextLine();
+      t.worker = keyInput.nextLine();
+
+      tasks[i] = t;
 
       System.out.println();
 
@@ -64,8 +72,9 @@ public class App3 {
     System.out.printf("[%s]\n", project);
 
     for (int i = 0; i < count; i++) {
+      Task t = tasks[i];
       String stateTitle;
-      switch (state[i]) {
+      switch (t.state) {
         case "0":
           stateTitle = "신규";
           break;
@@ -76,7 +85,7 @@ public class App3 {
           stateTitle = "완료";
       }
       System.out.printf("%d, %s, %s, %s, %s\n",
-          no[i], content[i], completedDate[i], stateTitle, worker[i]);
+          t.no, t.content, t.completedDate, stateTitle, t.worker);
     }
   }
 }

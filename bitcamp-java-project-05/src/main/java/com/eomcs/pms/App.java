@@ -1,95 +1,180 @@
 package com.eomcs.pms;
 
-// 클래스의 패키지 정보를 미리 선언하여 컴파일러에게 알려준다.
 import java.sql.Date;
 import java.util.Scanner;
 
-// 1) 회원의 번호, 이름, 이메일, 암호, 사진, 전화번호, 등록일을 담을 수 있는
-//    메모리를 설계한다. => Member 클래스 정의
-// 2) Member 클래스의 레퍼런스 배열을 만들어 Member의 인스턴스를 보관한다.
-// 3) 레퍼런스 배열을 사용하여 인스턴스를 다루기 보다는
-//    낱개의 레퍼런스를 만들어 인스턴스를 다루는 것이 더 간결하다.
+// 1) 명령 프롬프트를 출력한다
+// 2) 명령어를 입력 받아 출력한다
 public class App {
 
   public static void main(String[] args) {
-
-    // 값을 담기 위해 메모리를 준비할 때
-    // 어떤 종류의 메모리를 준비해야 하는지 설계도를 작성한다.
-    // => 이것을 "클래스 정의"라고 부른다.
-    class Member {
-      int no;
-      String name;
-      String email;
-      String password;
-      String photo;
-      String tel;
-      Date createdDate;
-    }
-
-    // Member 인스턴스의 주소를 담을 레퍼런스 배열을 준비한다.
-    final int LENGTH = 100;
-    Member[] members = new Member[LENGTH]; // [ , , , , ]
-
-
     Scanner keyInput = new Scanner(System.in);
 
-    System.out.println("[회원]");
-
+    // 회원
+    final int LENGTH = 5;
+    int[] no = new int[LENGTH];
+    String[] name = new String[LENGTH];
+    String[] email = new String[LENGTH];
+    String[] password = new String[LENGTH];
+    String[] photo = new String[LENGTH];
+    String[] tel = new String[LENGTH];
+    Date[] now = new Date[LENGTH];
     long currentMillis = 0;
     int count = 0;
 
-    for (int i = 0; i < LENGTH; i++) {
-      count++;
+    // 프로젝트
+    final int PLENGTH = 100;
+    int[] pno = new int[PLENGTH];
+    String[] ptitle = new String[PLENGTH];
+    String[] pcontent = new String[PLENGTH];
+    Date[] pstartDate = new Date[PLENGTH];
+    Date[] pendDate = new Date[PLENGTH];
+    String[] powner = new String[PLENGTH];
+    String[] pmembers = new String[PLENGTH];
+    int pcount = 0;
 
-      Member m = new Member();
+    // 작업
+    final int TLENGTH = 100;
+    int[] tno = new int[TLENGTH];
+    String[] tcontent = new String[TLENGTH];
+    Date[] tcompletedDate = new Date[TLENGTH];
+    String[] tstate = new String[TLENGTH];
+    String[] tworker = new String[TLENGTH];
+    int tcount = 0;
 
-      System.out.print("번호? ");
-      m.no = keyInput.nextInt();
-      keyInput.nextLine();
+    loop:
+      while (true) {
+        System.out.print("명령> ");
+        String command = keyInput.nextLine();
 
-      System.out.print("이름? ");
-      m.name = keyInput.nextLine();
+        switch (command.toLowerCase()) {
+          case "/member/add":
+            System.out.println("[회원 등록]");
 
-      System.out.print("이메일? ");
-      m.email = keyInput.nextLine();
+            System.out.print("번호? ");
+            no[count] = keyInput.nextInt();
+            keyInput.nextLine();
 
-      System.out.print("암호? ");
-      m.password = keyInput.nextLine();
+            System.out.print("이름? ");
+            name[count] = keyInput.nextLine();
 
-      System.out.print("사진? ");
-      m.photo = keyInput.nextLine();
+            System.out.print("이메일? ");
+            email[count] = keyInput.nextLine();
 
-      System.out.print("전화? ");
-      m.tel = keyInput.nextLine();
+            System.out.print("암호? ");
+            password[count] = keyInput.nextLine();
 
-      currentMillis = System.currentTimeMillis(); // 1970-1-1 00:00:00 에서경과된 밀리초
-      m.createdDate = new Date(currentMillis);
-      System.out.println();
+            System.out.print("사진? ");
+            photo[count] = keyInput.nextLine();
 
-      members[i] = m;
+            System.out.print("전화? ");
+            tel[count] = keyInput.nextLine();
 
-      System.out.print("계속 입력하시겠습니까?(y/N) ");
-      String response = keyInput.nextLine();
+            currentMillis = System.currentTimeMillis(); // 1970-1-1 00:00:00 에서경과된 밀리초
+            now[count] = new Date(currentMillis);
 
-      if (response.equalsIgnoreCase("y") == false) {
-        break; // 반복문을 멈춰라.
+            count++;
+            break;
+          case "/member/list":
+            System.out.println("[회원 목록]");
+
+            for (int i = 0; i < count; i++) {
+              System.out.printf("%d, %s, %s, %s, %s\n",
+                  no[i], name[i], email[i], tel[i], now[i].toString());
+            }
+            break;
+          case "/project/add":
+            System.out.println("[프로젝트 등록]");
+
+            System.out.print("번호? ");
+            pno[pcount] = keyInput.nextInt();
+            keyInput.nextLine();
+
+            System.out.print("프로젝트명? ");
+            ptitle[pcount] = keyInput.nextLine();
+
+            System.out.print("내용? ");
+            pcontent[pcount] = keyInput.nextLine();
+
+            System.out.print("시작일? ");
+            pstartDate[pcount] = java.sql.Date.valueOf(keyInput.nextLine());
+
+            System.out.print("종료일? ");
+            pendDate[pcount] = java.sql.Date.valueOf(keyInput.nextLine());
+
+            System.out.print("만든이? ");
+            powner[pcount] = keyInput.nextLine();
+
+            System.out.print("팀원? ");
+            pmembers[pcount] = keyInput.nextLine();
+
+            pcount++;
+            break;
+          case "/project/list":
+            System.out.println("[프로젝트 목록]");
+
+            for (int i = 0; i < pcount; i++) {
+              System.out.printf("%d, %s, %s, %s, %s\n",
+                  pno[i], ptitle[i], pstartDate[i], pendDate[i], powner[i]);
+            }
+            break;
+          case "/task/add":
+            System.out.println("[작업 등록]");
+
+            System.out.print("번호? ");
+            String str = keyInput.nextLine();
+            tno[tcount] = Integer.parseInt(str);
+
+            System.out.print("내용? ");
+            tcontent[tcount] = keyInput.nextLine();
+
+            System.out.print("완료일? ");
+            tcompletedDate[tcount] = java.sql.Date.valueOf(keyInput.nextLine());
+
+            System.out.println("상태? ");
+            System.out.println("0: 신규");
+            System.out.println("1: 진행중");
+            System.out.println("2: 완료");
+            System.out.print("> ");
+            tstate[tcount] = keyInput.nextLine();
+
+            System.out.print("담당자? ");
+            tworker[tcount] = keyInput.nextLine();
+
+            tcount++;
+            break;
+          case "/task/list":
+            System.out.println("[작업 목록]");
+
+            for (int i = 0; i < tcount; i++) {
+              String stateTitle;
+              switch (tstate[i]) {
+                case "0":
+                  stateTitle = "신규";
+                  break;
+                case "1":
+                  stateTitle = "진행중";
+                  break;
+                default:
+                  stateTitle = "완료";
+              }
+              System.out.printf("%d, %s, %s, %s, %s\n",
+                  tno[i], tcontent[i], tcompletedDate[i], stateTitle, tworker[i]);
+            }
+            break;
+          case "exit":
+          case "quit":
+            System.out.println("안녕!");
+            break loop;
+          default:
+            System.out.println("실행할 수 없는 명령입니다.");
+        }
+        System.out.println();
       }
-    }
 
     keyInput.close();
 
-    System.out.println("---------------------------");
-
-    for (int i = 0; i < count; i++) {
-      Member m = members[i];
-      System.out.printf("%d, %s, %s, %s, %s\n",
-          m.no,
-          m.name,
-          m.email,
-          m.tel,
-          m.createdDate.toString());
-    }
-
+    System.out.println("종료!");
   }
 }
 
