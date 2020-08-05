@@ -258,4 +258,16 @@ macOS 개발 환경 구축하기
     - App 변경
 - 메서드 사용법
   - com.eomcs.basic.ex07 패키지 예제
-  - Exam0110 ~ Exam0630 클래스
+  - Exam0110 ~ Exam0271 클래스
+
+### 17일차(2020-08-04,화)
+
+- 메서드 사용법
+  - com.eomcs.basic.ex07 패키지 예제
+  - Exam0280 ~ Exam0630 클래스
+
+### 18일차(2020-08-05,수)
+
+- 콘솔 출력 및 키보드 입력 다루기
+  - com.eomcs.basic.ex99 패키지 예제
+  - Exam0110 ~ Exam0260 클래스
