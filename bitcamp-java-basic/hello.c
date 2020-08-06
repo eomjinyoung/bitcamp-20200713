@@ -1,31 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// function prototype
-void f1(int);
-void f2(int*);
+void plus(int*, int);
+void minus(int*, int);
 
 int main() {
-  int a = 200;
+  int r1 = 0;
+  int r2 = 0;
+
+  plus(&r1, 2);
+  plus(&r2, 5);
+  plus(&r1, 3);
+  minus(&r2, 7);
+  minus(&r1, 1);
   
-  f1(a);
-  
-  printf("a = %d\n", a);
-  
-  f2(&a);
-  
-  printf("a = %d\n", a);
+  printf("%d\n", r1);
+  printf("%d\n", r2);
   
   return 0;
 }
 
-void f1(int a) {
-  a = 100;
+void plus(int* pResult, int a) {
+  *pResult = *pResult + a;
 }
 
-void f2(int* p) {
-  *p = 100;
+void minus(int* pResult, int a) {
+  *pResult = *pResult - a;
 }
+
 
 
 
