@@ -272,11 +272,21 @@ macOS 개발 환경 구축하기
   - com.eomcs.basic.ex99 패키지 예제
   - Exam0110 ~ Exam0260 클래스
 - 클래스 문법의 용도 I
-  - com.eomcs.basic.ex02 패키지 예제
+  - com.eomcs.oop.ex02 패키지 예제
   - Exam0210 ~ Exam0280 클래스
 
-### 18일차(2020-08-06,목)
+### 19일차(2020-08-06,목)
 
 - 클래스 문법의 용도 II
-  - com.eomcs.basic.ex02 패키지 예제
+  - com.eomcs.oop.ex02 패키지 예제
   - Exam0110 ~ Exam0130 클래스
+
+- 클래스 사용법
+  - com.eomcs.oop.ex03 패키지 예제
+  - Exam0110 ~ Exam0430 클래스
+
+### 20일차(2020-08-07,금)
+
+- 클래스 사용법
+  - com.eomcs.oop.ex03 패키지 예제
+  - Exam0440 ~ Exam0970 클래스
