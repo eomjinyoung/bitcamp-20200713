@@ -1,37 +1,11 @@
 package com.eomcs.pms;
 
-import java.sql.Date;
+import com.eomcs.pms.handler.MemberHandler;
+import com.eomcs.pms.handler.ProjectHandler;
+import com.eomcs.pms.handler.TaskHandler;
+import com.eomcs.util.Prompt;
 
 public class App {
-
-  // 회원 데이터
-
-
-  // 프로젝트 데이터
-  static class Project {
-    int no;
-    String title;
-    String content;
-    Date startDate;
-    Date endDate;
-    String owner;
-    String members;
-  }
-  static final int PLENGTH = 100;
-  static Project[] projects = new Project[PLENGTH];
-  static int psize = 0;
-
-  // 작업 데이터
-  static class Task {
-    int no;
-    String content;
-    Date deadline;
-    String owner;
-    int status;
-  }
-  static final int TLENGTH = 100;
-  static Task[] tasks = new Task[TLENGTH];
-  static int tsize = 0;
 
   public static void main(String[] args) {
 
@@ -41,22 +15,22 @@ public class App {
 
         switch (command) {
           case "/member/add":
-            MemberHandler.addMember();
+            MemberHandler.add();
             break;
           case "/member/list":
-            MemberHandler.listMember();
+            MemberHandler.list();
             break;
           case "/project/add":
-            addProject();
+            ProjectHandler.add();
             break;
           case "/project/list":
-            listProject();
+            ProjectHandler.list();
             break;
           case "/task/add":
-            addTask();
+            TaskHandler.add();
             break;
           case "/task/list":
-            listTask();
+            TaskHandler.list();
             break;
           case "quit":
           case "exit":
@@ -70,70 +44,4 @@ public class App {
 
   Prompt.close();
   }
-
-
-
-  static void addProject() {
-    System.out.println("[프로젝트 등록]");
-
-    Project p = new Project();
-
-    p.no = Prompt.inputInt("번호? ");
-    p.title = Prompt.inputString("프로젝트명? ");
-    p.content = Prompt.inputString("내용? ");
-    p.startDate = Prompt.inputDate("시작일? ");
-    p.endDate = Prompt.inputDate("종료일? ");
-    p.owner = Prompt.inputString("만든이? ");
-    p.members = Prompt.inputString("팀원? ");
-
-    projects[psize++] = p;
-  }
-
-  static void listProject() {
-    System.out.println("[프로젝트 목록]");
-
-    for (int i = 0; i < psize; i++) {
-      Project p = projects[i];
-      System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
-          p.no, p.title, p.startDate, p.endDate, p.owner);
-    }
-  }
-
-  static void addTask() {
-    System.out.println("[작업 등록]");
-
-    Task t = new Task();
-
-    t.no = Prompt.inputInt("번호? ");
-    t.content = Prompt.inputString("내용? ");
-    t.deadline = Prompt.inputDate("마감일? ");
-    t.status = Prompt.inputInt("상태?\n0: 신규\n1: 진행중\n2: 완료\n> ");
-    t.owner = Prompt.inputString("담당자? ");
-
-    tasks[tsize++] = t;
-  }
-
-  static void listTask() {
-    System.out.println("[작업 목록]");
-
-    for (int i = 0; i < tsize; i++) {
-      Task t = tasks[i];
-      String stateLabel = null;
-      switch (t.status) {
-        case 1:
-          stateLabel = "진행중";
-          break;
-        case 2:
-          stateLabel = "완료";
-          break;
-        default:
-          stateLabel = "신규";
-      }
-      // 번호, 작업명, 마감일, 프로젝트, 상태, 담당자
-      System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
-          t.no, t.content, t.deadline, stateLabel, t.owner);
-    }
-  }
-
-
 }

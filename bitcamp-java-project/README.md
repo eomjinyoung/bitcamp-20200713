@@ -1,80 +1,58 @@
-# 08 - 클래스로 메서드를 분류하기
+# 09 - 패키지로 클래스를 분류하기
 
-**클래스**는 새 데이터 타입을 정의할 때 사용하지만,
-여러 개의 메서드를 한 단위로 묶을 때도 사용한다. 
-서로 관련된 일을 하는 메서드들을 한 곳에 묶어 놓으면 관리가 쉽기 때문이다.
-
-이번 훈련에서는 클래스를 사용하여 회원 데이터를 다루는 메서드와 
-프로젝트 데이터를 다루는 메서드, 작업 데이터를 다루는 메서드를 
-각각의 클래스로 분리할 것이다.
-메서드를 분류하는 용도로 클래스 문법을 사용해 보자.
+**패키지(package)** 는 여러 개의 클래스를 관리하기 좋게 분류할 때 사용하는 문법이다.
+패키지는 실제 폴더를 가리키며, 각 클래스 파일을 *역할에 따라 패키지에 나누어 배치* 한다.
 
 ## 훈련 목표
 
-- 클래스를 이용하여 메서드를 한 단위로 묶는 방법을 배운다.
-- 리팩토링 기법 중에서 '클래스 추출(Extract Class)'을 연습한다.
+- 패키지를 이용하여 역할에 따라 클래스를 분류하는 방법을 배운다.
+- 패키지와 폴더의 관계를 이해한다.
+- 멤버의 접근을 제어하는 default와 public의 사용법을 이해한다.
 
 ## 훈련 내용
 
-- 프롬프트 관련 메서드를 별도의 클래스로 분리한다.
-- 회원 관련 메서드를 별도의 클래스로 분리한다.
-- 프로젝트 관련 메서드를 별도의 클래스로 분리한다.
-- 작업 관련 메서드를 별도의 클래스로 분리한다.
+- Prompt 클래스를 다른 패키지로 분류한다.
+- Handler 클래스들을 다른 패키지로 분류한다.
+- 메서드의 접근 범위를 public 으로 확장한다.
 
 ## 실습
 
-### 1단계 - 사용자의 입력을 받는 프롬프트 메서드를 별도의 클래스로 분리한다
+### 1단계 - `Prompt` 클래스를 별도의 패키지로 분류한다
 
-- `App` 클래스에서 사용자의 입력을 받는 프롬프트 관련 필드와 메서드를 추출하여 `Prompt` 라는 별도의 클래스로 옮긴다.
-- `App` 클래스는 사용자 입력을 필요할 때 `Prompt` 클래스로 옮겨진 메서드를 사용하여 처리한다.
-
-#### 작업 파일
-
-- com.eomcs.pms.Prompt 클래스 생성
-    - 프롬프트 메서드의 이름을 적절하게 변경한다.
-- com.eomcs.pms.App 변경
-    - 백업: App_a.java
-
-### 2단계 - 회원 데이터 처리와 관련된 메서드를 별도의 클래스로 분리한다
-
-- `App` 클래스에서 회원 관리와 관련된 필드와 메서드를 추출하여 `MemberHandler` 라는 별도의 클래스로 옮긴다.
-- `App` 클래스는 회원 입력과 목록 조회를 처리할 때 `MemberHandler` 클래스를 사용하여 처리한다.
+- 여러 프로젝트에서 공통으로 사용할 클래스라면 별도의 패키지로 분류하는 것이 클래스 관리에 좋다.
+- 프롬프트를 다루는 클래스는 여러 프로젝트에서 사용할 것이기 때문에 별도의 패키지로 분류한다.
 
 #### 작업 파일
 
-- com.eomcs.pms.MemberHandler 클래스 생성
-  - 메서드 이름을 적절하게 변경한다. 예) addMember() --> add()
-- com.eomcs.pms.App 변경
-  - 백업: App_b.java
+- 유틸리티 패키지 생성
+  - `com.eomcs.util` 패키지 생성
+- com.eomcs.util.Prompt 클래스 변경
+  - Prompt 클래스를 `util` 패키지로 이동한다.
+  - 다른 패키지의 클래스가 메서드를 사용할 수 있도록 메서드의 사용 범위를 public 으로 확장한다.
+- com.eomcs.pms.App 클래스 변경
+  - Prompt 클래스의 import 문을 추가한다.
 
-### 3단계 - 프로젝트 데이터 처리와 관련된 메서드를 별도의 클래스로 분리한다
-
-- `App` 클래스에서 프로젝트 관리와 관련된 필드와 메서드를 추출하여 `ProjectHandler` 라는 별도의 클래스로 옮긴다.
-- `App` 클래스는 프로젝트 입력과 목록 조회를 처리할 때 `ProjectHandler` 클래스를 사용하여 처리한다.
+### 2단계 - 핸들러 클래스들을 별도의 패키지로 분류한다
 
 #### 작업 파일
 
-- com.eomcs.pms.ProjectHandler 클래스 생성
-  - 필드와 메서드를 적절한 이름으로 변경한다.
-- com.eomcs.pms.App 변경
-  - 백업: App_c.java
-
-### 4단계 - 작업 데이터 처리와 관련된 메서드를 별도의 클래스로 분리한다
-
-- `App` 클래스에서 작업 관리와 관련된 필드와 메서드를 추출하여 `TaskHandler` 라는 별도의 클래스로 옮긴다.
-- `App` 클래스는 작업 입력과 목록 조회를 처리할 때 `TaskHandler` 클래스를 사용하여 처리한다.
-- 
-#### 작업 파일
-
-- com.eomcs.pms.TaskHandler 클래스 생성
-  - 필드와 메서드를 적절한 이름으로 변경한다.
-- com.eomcs.pms.App 변경
-
+- 핸들러 패키지 생성
+    - `com.eomcs.pms.handler` 패키지 생성
+- com.eomcs.pms.handler.MemberHandler 패키지 변경
+  - 다른 패키지에서 메서드를 호출할 수 있도록 사용 범위를 public 으로 확장한다.
+- com.eomcs.pms.handler.ProjectHandler 패키지 변경
+  - 다른 패키지에서 메서드를 호출할 수 있도록 사용 범위를 public 으로 확장한다.
+- com.eomcs.pms.handler.TaskHandler 패키지 변경
+  - 다른 패키지에서 메서드를 호출할 수 있도록 사용 범위를 public 으로 확장한다.
+- com.eomcs.pms.App 클래스 변경
+    - 핸들러 클래스에 대해 import 문 변경
 
 ## 실습 결과
 
+- com.eomcs.util 패키지 추가
+- src/main/java/com/eomcs/util/Prompt.java 패키지 변경
+- com.eomcs.pms.handler 패키지 추가
+- src/main/java/com/eomcs/pms/handler/MemberHandler.java 패키지 변경
+- src/main/java/com/eomcs/pms/handler/ProjectHandler.java 패키지 변경
+- src/main/java/com/eomcs/pms/handler/TaskHandler.java 패키지 변경
 - src/main/java/com/eomcs/pms/App.java 변경
-- src/main/java/com/eomcs/pms/Prompt.java 추가
-- src/main/java/com/eomcs/pms/MemberHandler.java 추가
-- src/main/java/com/eomcs/pms/ProjectHandler.java 추가
-- src/main/java/com/eomcs/pms/TaskHandler.java 추가
