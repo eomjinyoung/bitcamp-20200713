@@ -299,4 +299,16 @@ macOS 개발 환경 구축하기
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 07 버전 수행: 클래스를 이용하여 새 데이터 타입 정의하기
     - App 변경
+  - 08 버전 수행: 클래스로 메서드를 분류하기
+    - Prompt, MemberHandler, ProjectHandler, TaskHandler 추가
+    - App 변경
+  - 09 버전 수행: 패키지로 클래스를 분류하기
+    - com.eomcs.util 패키지 추가
+      - Prompt 클래스 이동
+    - com.eomcs.pms.handler 패키지 추가
+      - MemberHandler, ProjectHandler, TaskHandler 클래스 이동
+    - App 변경
 
+### 22일차(2020-08-11,화)
+
+-
