@@ -22,11 +22,10 @@ package com.eomcs.corelib.ex03;
 //12) 여러 개의 목록을 동시에 관리할 수 있도록
 //    MyArrayList에 선언된 레퍼런스 배열을 스태틱 대신 인스턴스로 전환한다.
 // - 개별적으로 관리해야 할 데이터는 인스턴스 변수를 사용해야 한다.
-//13) 캡슐화 적용하여 공개할 멤버와 공개하지 말아야 할 멤버를 구분한다.
-public class MyArrayList {
+public class MyArrayList12 {
 
-  private Object[] elementData = new Object[5];
-  private int size;
+  Object[] elementData = new Object[5];
+  int size;
 
   public boolean add(Object e) {
     if (size == elementData.length) {
@@ -89,10 +88,6 @@ public class MyArrayList {
     // 가비지 될 수 있게 한다.
 
     return old;
-  }
-
-  public int size() {
-    return this.size;
   }
 }
 

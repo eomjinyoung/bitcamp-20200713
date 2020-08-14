@@ -20,8 +20,17 @@ public class MyArrayListTest2 {
     MyArrayList.add("hhh"); // aaa,bbb,ccc,ddd,eee,fff,ggg,hhh
     print();
 
-    MyArrayList.add(8, "iii");
+    MyArrayList.add(8, "iii"); // aaa,bbb,ccc,ddd,eee,fff,ggg,hhh,iii
     print();
+
+    Object old = MyArrayList.remove(5); // aaa,bbb,ccc,ddd,eee,ggg,hhh,iii
+    print();
+    System.out.println(old);
+
+    MyArrayList.set(7, "xxx");
+    print();
+
+    System.out.println(MyArrayList.get(7));
 
   }
 
