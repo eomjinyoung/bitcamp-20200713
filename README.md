@@ -321,7 +321,14 @@ macOS 개발 환경 구축하기
 - 다형성 문법: 오버로딩, 오버라이딩
   - com.eomcs.oop.ex06.b ~ e 패키지 예제
 - 캡슐화 문법
-  - eom.eomcs.oop.ex07 패키지 예제
+  - com.eomcs.oop.ex07 패키지 예제
 
 ### 24일차(2020-08-13,목)
 
+- 주요 클래스 사용법: Object 클래스
+  - com.eomcs.corelib.ex01 패키지 예제
+
+### 25일차(2020-08-14,금)
+
+- 주요 클래스 사용법: String 클래스
+  - com.eomcs.corelib.ex02 패키지 예제
