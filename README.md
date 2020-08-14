@@ -330,5 +330,6 @@ macOS 개발 환경 구축하기
 
 ### 25일차(2020-08-14,금)
 
-- 주요 클래스 사용법: String 클래스
-  - com.eomcs.corelib.ex02 패키지 예제
+- 주요 클래스 사용법
+  - String 클래스: com.eomcs.corelib.ex02 패키지 예제
+  - ArrayList 클래스: com.eomcs.corelib.ex03 패키지 예제
