@@ -9,9 +9,7 @@ package com.eomcs.algorithm.data_structure.linkedlist;
 // 6) 목록에서 특정 인덱스 위치에 값을 삽입하는 add(int, Object) 메서드를 정의한다.
 //    - Node의 생성자를 추가한다.
 // 7) 목록에서 특정 인덱스에 값을 제거하는 remove(int) 메서드를 정의한다.
-// 8) 목록에서 특정 인덱스의 값을 바꾸는 set(int, Object) 메서드를 정의한다.
-// 9) 목록의 데이터를 새 배열에 담아 리턴하는 toArray() 메서드를 정의한다.
-public class MyLinkedList {
+public class MyLinkedList07 {
 
   // 값을 찾을 때는 첫 번째 노드부터 따라간다.
   Node first;
@@ -122,36 +120,6 @@ public class MyLinkedList {
     }
 
     return old.value;
-  }
-
-  public Object set(int index, Object element) {
-    if (index < 0 || index >= this.size) {
-      throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다.");
-    }
-
-    Node cursor = this.first;
-    for (int i = 1; i <= index; i++) {
-      cursor = cursor.next;
-    }
-
-    Object old = cursor.value;
-    cursor.value = element;
-
-    return old;
-  }
-
-  public Object[] toArray() {
-    Object[] arr = new Object[this.size];
-
-    int i = 0;
-    Node cursor = first;
-
-    while (cursor != null) {
-      arr[i++] = cursor.value;
-      cursor = cursor.next;
-    }
-
-    return arr;
   }
 }
 
