@@ -8,5 +8,32 @@ public class MyLinkedListTest {
     list.add("bbb");
     list.add("ccc");
     list.add("ddd");
+
+    System.out.println(list.get(0));
+    System.out.println(list.get(1));
+    System.out.println(list.get(2));
+    System.out.println(list.get(3));
+    //System.out.println(list.get(-1));
+    //System.out.println(list.get(4));
+    System.out.println("---------------------");
+
+    print(list); // aaa, bbb, ccc, ddd,
+
+    System.out.println("---------------------");
+
+    list.add(2, "eee"); // aaa, bbb, eee, ccc, ddd,
+    list.add(0, "fff"); // fff, aaa, bbb, eee, ccc, ddd,
+    list.add(6, "ggg"); // fff, aaa, bbb, eee, ccc, ddd, ggg
+    print(list);
+
+    System.out.println("---------------------");
+
+  }
+
+  static void print(MyLinkedList list) {
+    for (int i = 0; i < list.size; i++) {
+      System.out.print(list.get(i) + ",");
+    }
+    System.out.println();
   }
 }

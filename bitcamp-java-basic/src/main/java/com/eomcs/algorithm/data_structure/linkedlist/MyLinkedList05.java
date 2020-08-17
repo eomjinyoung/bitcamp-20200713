@@ -5,7 +5,8 @@ package com.eomcs.algorithm.data_structure.linkedlist;
 // 3) 첫 번째 노드와 마지막 노드의 주소를 담을 필드를 추가한다.
 //    목록 크기를 저장할 필드를 추가한다.
 // 4) 목록에 값을 추가하는 add() 메서드를 정의한다.
-public class MyLinkedList04 {
+// 5) 목록에서 값을 조회하는 get() 메서드를 정의한다.
+public class MyLinkedList05 {
 
   // 값을 찾을 때는 첫 번째 노드부터 따라간다.
   Node first;
@@ -41,4 +42,21 @@ public class MyLinkedList04 {
 
     return true;
   }
+
+  public Object get(int index) {
+    if (index < 0 || index >= this.size) {
+      throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다.");
+    }
+
+    Node cursor = this.first;
+    for (int i = 1; i <= index; i++) {
+      cursor = cursor.next;
+    }
+    return cursor.value;
+  }
 }
+
+
+
+
+
