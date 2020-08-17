@@ -15,8 +15,7 @@ public class MyArrayListTest3 {
     list1.remove(2); // aaa, bbb, ddd, eee, fff, ggg
     list1.remove(0); // bbb, ddd, eee, fff, ggg
     list1.remove(4); // bbb, ddd, eee, fff
-
-    print(list1);
+    print2(list1);
 
     System.out.println("------------------------");
 
@@ -29,7 +28,7 @@ public class MyArrayListTest3 {
     list2.add("jjj");
     list2.add("kkk");
     list2.add("lll");
-    print(list2);
+    print2(list2);
 
 
 
@@ -39,6 +38,16 @@ public class MyArrayListTest3 {
   static void print(MyArrayList list) {
     for (int i = 0; i < list.size(); i++) {
       String str = (String) list.get(i);
+      System.out.print(str + ",");
+    }
+    System.out.println();
+  }
+
+  static void print2(MyArrayList list) {
+    Object[] arr;
+    arr = list.toArray();
+    for (Object obj : arr) {
+      String str = (String) obj;
       System.out.print(str + ",");
     }
     System.out.println();
