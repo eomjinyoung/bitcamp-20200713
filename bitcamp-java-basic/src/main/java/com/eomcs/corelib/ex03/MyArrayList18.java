@@ -30,18 +30,17 @@ import java.util.Arrays;
 //16) 배열 크기를 지정할 때 기본 크기 보다 큰 값이 되도록 생성자를 변경한다.
 //17) 배열의 기본 크기를 직접 숫자로 지정하지 말고 상수를 사용하여 지정한다.
 //18) 배열의 크기를 늘릴 때 자바에서 제공하는 Arrays를 사용하여 처리한다.
-//19) 배열의 특정 항목을 삭제할 때 배열 복사 기능을 이용하여 처리한다.
-public class MyArrayList {
+public class MyArrayList18 {
 
   private static final int DEFAULT_CAPACITY = 5;
   private Object[] elementData;
   private int size;
 
-  public MyArrayList() {
+  public MyArrayList18() {
     elementData = new Object[DEFAULT_CAPACITY];
   }
 
-  public MyArrayList(int initialCapacity) {
+  public MyArrayList18(int initialCapacity) {
     if (initialCapacity < DEFAULT_CAPACITY) {
       elementData = new Object[DEFAULT_CAPACITY];
     } else {
@@ -104,18 +103,9 @@ public class MyArrayList {
   public Object remove(int index) {
     Object old = elementData[index];
 
-    System.arraycopy(
-        elementData, // 복사 대상
-        index + 1, // 복사할 항목의 시작 인덱스
-        elementData, // 목적지
-        index, // 복사 목적지 인덱스
-        this.size - (index + 1) // 복사할 항목의 개수
-        );
-    /*
     for (int i = index; i < size - 1; i++) {
       elementData[i] = elementData[i + 1];
     }
-     */
 
     size--;
     elementData[size] = null;
