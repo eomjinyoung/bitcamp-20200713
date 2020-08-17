@@ -333,3 +333,10 @@ macOS 개발 환경 구축하기
 - 주요 클래스 사용법
   - String 클래스: com.eomcs.corelib.ex02 패키지 예제
   - ArrayList 클래스: com.eomcs.corelib.ex03 패키지 예제
+  - ArrayList 클래스 만들기: com.eomcs.algorithm.data_structure.array 패키지 예제
+
+### 26일차(2020-08-17,월)
+
+- 주요 클래스 사용법
+  - LinkedList 클래스: com.eomcs.corelib.ex04 패키지 예제
+  - LinkedList 클래스 만들기: com.eomcs.algorithm.data_structure.linkedlist 패키지 예제
