@@ -344,5 +344,7 @@ macOS 개발 환경 구축하기
 ### 27일차(2020-08-18,화)
 
 - 주요 클래스 사용법
-  - Queue 클래스: com.eomcs.corelib.ex04 패키지 예제
+  - Stack 클래스: com.eomcs.corelib.ex05 패키지 예제
+  - Stack 클래스 만들기: com.eomcs.algorithm.data_structure.stack 패키지 예제
+  - Queue 클래스: com.eomcs.corelib.ex06 패키지 예제
   - Queue 클래스 만들기: com.eomcs.algorithm.data_structure.queue 패키지 예제
