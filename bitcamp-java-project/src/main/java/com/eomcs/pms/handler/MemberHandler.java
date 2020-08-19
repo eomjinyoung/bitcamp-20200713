@@ -5,6 +5,7 @@ import com.eomcs.util.Prompt;
 
 public class MemberHandler {
 
+  // 회원 데이터
   static class Member {
     int no;
     String name;
@@ -14,40 +15,44 @@ public class MemberHandler {
     String tel;
     Date registeredDate;
   }
-
   static final int LENGTH = 100;
-  static Member[] list = new Member[LENGTH];
-  static int size = 0;
 
-  public static void add() {
+  Member[] list = new Member[LENGTH]; // list로 이름을 바꾼다.
+  int size = 0;
+
+  // 다른 패키지에서 이 메서드를 사용할 수 있도록 public 으로 사용 범위를 공개한다.
+  public void add() {
     System.out.println("[회원 등록]");
 
-    Member m = new Member();
+    Member member = new Member();
+    member.no = Prompt.inputInt("번호? ");
+    member.name = Prompt.inputString("이름? ");
+    member.email = Prompt.inputString("이메일? ");
+    member.password = Prompt.inputString("암호? ");
+    member.photo = Prompt.inputString("사진? ");
+    member.tel = Prompt.inputString("전화? ");
+    member.registeredDate = new java.sql.Date(System.currentTimeMillis());
 
-    m.no = Prompt.inputInt("번호? ");
-    m.name = Prompt.inputString("이름? ");
-    m.email = Prompt.inputString("이메일? ");
-    m.password = Prompt.inputString("암호? ");
-    m.photo = Prompt.inputString("사진? ");
-    m.tel = Prompt.inputString("전화? ");
-    m.registeredDate = new java.sql.Date(System.currentTimeMillis());
-
-    list[size++] = m;
+    this.list[this.size++] = member;
   }
 
-  public static void list() {
+  public void list() {
     System.out.println("[회원 목록]");
 
-    for (int i = 0; i < size; i++) {
-      Member m = list[i];
-      System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
-          m.no, m.name, m.email, m.tel, m.registeredDate);
+    for (int i = 0; i < this.size; i++) {
+      Member member = this.list[i];
+      System.out.printf("%d, %s, %s, %s, %s\n",
+          member.no,
+          member.name,
+          member.email,
+          member.tel,
+          member.registeredDate);
     }
   }
 
-  public static Member findByName(String name) {
-    for (int i = 0; i < size; i++) {
-      Member member = list[i];
+  public Member findByName(String name) {
+    for (int i = 0; i < this.size; i++) {
+      Member member = this.list[i];
       if (member.name.equals(name)) {
         return member;
       }
@@ -55,10 +60,3 @@ public class MemberHandler {
     return null;
   }
 }
-
-
-
-
-
-
-

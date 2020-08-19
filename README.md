@@ -348,3 +348,11 @@ macOS 개발 환경 구축하기
   - Stack 클래스 만들기: com.eomcs.algorithm.data_structure.stack 패키지 예제
   - Queue 클래스: com.eomcs.corelib.ex06 패키지 예제
   - Queue 클래스 만들기: com.eomcs.algorithm.data_structure.queue 패키지 예제
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 10 버전 수행: 다른 클래스와 관계 맺기 : 의존 관계
+
+### 28일차(2020-08-19,수)
+
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 11 버전 수행: 클래스 필드와 클래스 메서드의 한계
+  - 12 버전 수행: 인스턴스 필드와 인스턴스 메서드가 필요한 이유
