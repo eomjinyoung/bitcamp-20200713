@@ -5,7 +5,7 @@ import com.eomcs.util.Prompt;
 
 public class TaskHandler {
 
-  TaskList taskList = new TaskList();
+  ArrayList<Task> taskList = new ArrayList<>();
   MemberHandler memberHandler;
 
   public TaskHandler(MemberHandler memberHandler) {
@@ -40,7 +40,7 @@ public class TaskHandler {
 
   public void list() {
     System.out.println("[작업 목록]");
-    Task[] tasks = taskList.toArray();
+    Task[] tasks = taskList.toArray(Task[].class);
     for (Task task : tasks) {
       String stateLabel = null;
       switch (task.getStatus()) {

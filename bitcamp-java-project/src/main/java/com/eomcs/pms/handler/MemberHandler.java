@@ -6,7 +6,7 @@ import com.eomcs.util.Prompt;
 public class MemberHandler {
 
   // MemberHandler가 데이터를 다루기 위해 의존하는 객체를 준비한다.
-  MemberList memberList = new MemberList();
+  ArrayList<Member> memberList = new ArrayList<>();
 
   // 다른 패키지에서 이 메서드를 사용할 수 있도록 public 으로 사용 범위를 공개한다.
   public void add() {
@@ -27,7 +27,7 @@ public class MemberHandler {
   public void list() {
     System.out.println("[회원 목록]");
 
-    Member[] members = memberList.toArray();
+    Member[] members = memberList.toArray(Member[].class);
 
     for (Member member : members) {
       System.out.printf("%d, %s, %s, %s, %s\n",
@@ -40,7 +40,7 @@ public class MemberHandler {
   }
 
   public Member findByName(String name) {
-    Member[] members = memberList.toArray();
+    Member[] members = memberList.toArray(Member[].class);
 
     for (Member member : members) {
       if (member.getName().equals(name)) {

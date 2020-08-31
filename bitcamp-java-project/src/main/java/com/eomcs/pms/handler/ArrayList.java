@@ -2,12 +2,14 @@ package com.eomcs.pms.handler;
 
 import java.util.Arrays;
 
-public class ArrayList {
+// ArrayList 가 다룰 객체의 타입을 변수(파라미터)로 받는다.
+// => '타입 파라미터'라 부른다.
+public class ArrayList<E> {
 
   static final int DEFAULT_CAPACITY = 3;
   Object[] list;
   int size = 0;
-
+  
   public ArrayList() {
     list = new Object[DEFAULT_CAPACITY];
   }
@@ -20,7 +22,7 @@ public class ArrayList {
     }
   }
 
-  public void add(Object obj) {
+  public void add(E obj) {
     if (size == list.length) {
       int oldCapacity = list.length;
       int newCapacity = oldCapacity + (oldCapacity >> 1);
@@ -30,8 +32,8 @@ public class ArrayList {
     list[size++] = obj;
   }
 
-  public Object[] toArray() {
-    return Arrays.copyOf(list, size);
+  public E[] toArray(Class<E[]> arrayType) {
+    return Arrays.copyOf(list, size, arrayType);
   }
 }
 
