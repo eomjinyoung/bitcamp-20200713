@@ -34,6 +34,7 @@ public class App {
           case "/task/list": taskHandler.list(); break;
           case "/board/add": boardHandler.add(); break;
           case "/board/list": boardHandler.list(); break;
+          case "/board/detail": boardHandler.detail(); break;
           case "/board2/add": boardHandler2.add(); break;
           case "/board2/list": boardHandler2.list(); break;
           case "/board3/add": boardHandler3.add(); break;
