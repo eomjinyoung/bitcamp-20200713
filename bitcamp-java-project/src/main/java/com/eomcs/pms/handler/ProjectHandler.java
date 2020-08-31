@@ -1,6 +1,7 @@
 package com.eomcs.pms.handler;
 
 import com.eomcs.pms.domain.Project;
+import com.eomcs.util.ArrayList;
 import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
@@ -58,7 +59,7 @@ public class ProjectHandler {
 
   public void list() {
     System.out.println("[프로젝트 목록]");
-    Project[] projects = projectList.toArray(Project[].class);
+    Project[] projects = projectList.toArray(new Project[] {});
     for (Project project : projects) {
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
           project.getNo(),

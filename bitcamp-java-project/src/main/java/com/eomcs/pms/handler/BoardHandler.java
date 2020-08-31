@@ -2,6 +2,7 @@ package com.eomcs.pms.handler;
 
 import java.sql.Date;
 import com.eomcs.pms.domain.Board;
+import com.eomcs.util.ArrayList;
 import com.eomcs.util.Prompt;
 
 public class BoardHandler {
@@ -28,7 +29,8 @@ public class BoardHandler {
   public void list() {
     System.out.println("[게시물 목록]");
 
-    Board[] boards = boardList.toArray(Board[].class);
+    Board[] boards = new Board[boardList.size()];
+    boardList.toArray(boards);
 
     for (Board board : boards) {
       System.out.printf("%d, %s, %s, %s, %d\n",

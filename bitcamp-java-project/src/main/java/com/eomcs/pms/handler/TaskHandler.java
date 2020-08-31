@@ -1,6 +1,7 @@
 package com.eomcs.pms.handler;
 
 import com.eomcs.pms.domain.Task;
+import com.eomcs.util.ArrayList;
 import com.eomcs.util.Prompt;
 
 public class TaskHandler {
@@ -40,7 +41,7 @@ public class TaskHandler {
 
   public void list() {
     System.out.println("[작업 목록]");
-    Task[] tasks = taskList.toArray(Task[].class);
+    Task[] tasks = taskList.toArray(new Task[] {});
     for (Task task : tasks) {
       String stateLabel = null;
       switch (task.getStatus()) {

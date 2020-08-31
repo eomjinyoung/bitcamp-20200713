@@ -1,6 +1,7 @@
 package com.eomcs.pms.handler;
 
 import com.eomcs.pms.domain.Member;
+import com.eomcs.util.ArrayList;
 import com.eomcs.util.Prompt;
 
 public class MemberHandler {
@@ -27,7 +28,7 @@ public class MemberHandler {
   public void list() {
     System.out.println("[회원 목록]");
 
-    Member[] members = memberList.toArray(Member[].class);
+    Member[] members = memberList.toArray(new Member[] {});
 
     for (Member member : members) {
       System.out.printf("%d, %s, %s, %s, %s\n",
@@ -40,7 +41,7 @@ public class MemberHandler {
   }
 
   public Member findByName(String name) {
-    Member[] members = memberList.toArray(Member[].class);
+    Member[] members = memberList.toArray(new Member[] {});
 
     for (Member member : members) {
       if (member.getName().equals(name)) {
