@@ -1,29 +1,13 @@
 package com.eomcs.pms.handler;
 
-import java.sql.Date;
+import com.eomcs.pms.domain.Project;
 import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
 
-  static class Project {
-    int no;
-    String title;
-    String content;
-    Date startDate;
-    Date endDate;
-    String owner;
-    String members;
-  }
-  static final int LENGTH = 100;
-
-  Project[] list = new Project[LENGTH];
-  int size = 0;
-
-  // 외부에서 직접 이 변수를 사용하지 않기 때문에
-  // public 으로 공개한 것을 취소한다.
+  ProjectList projectList = new ProjectList();
   MemberHandler memberHandler;
 
-  // 인스턴스 변수들을 유효한 값으로 초기화시키는 생성자를 정의한다.
   public ProjectHandler(MemberHandler memberHandler) {
     this.memberHandler = memberHandler;
   }
@@ -32,11 +16,11 @@ public class ProjectHandler {
     System.out.println("[프로젝트 등록]");
 
     Project project = new Project();
-    project.no = Prompt.inputInt("번호? ");
-    project.title = Prompt.inputString("프로젝트명? ");
-    project.content = Prompt.inputString("내용? ");
-    project.startDate = Prompt.inputDate("시작일? ");
-    project.endDate = Prompt.inputDate("종료일? ");
+    project.setNo(Prompt.inputInt("번호? "));
+    project.setTitle(Prompt.inputString("프로젝트명? "));
+    project.setContent(Prompt.inputString("내용? "));
+    project.setStartDate(Prompt.inputDate("시작일? "));
+    project.setEndDate(Prompt.inputDate("종료일? "));
 
     while (true) {
       String name = Prompt.inputString("만든이?(취소: 빈 문자열) ");
@@ -45,7 +29,7 @@ public class ProjectHandler {
         System.out.println("프로젝트 등록을 취소합니다.");
         return;
       } else if (memberHandler.findByName(name) != null) {
-        project.owner = name;
+        project.setOwner(name);
         break;
       }
 
@@ -67,23 +51,22 @@ public class ProjectHandler {
         System.out.println("등록된 회원이 아닙니다.");
       }
     }
-    project.members = members.toString();
+    project.setMembers(members.toString());
 
-    this.list[this.size++] = project;
+    projectList.add(project);
   }
 
   public void list() {
     System.out.println("[프로젝트 목록]");
-
-    for (int i = 0; i < this.size; i++) {
-      Project project = this.list[i];
+    Project[] projects = projectList.toArray();
+    for (Project project : projects) {
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
-          project.no,
-          project.title,
-          project.startDate,
-          project.endDate,
-          project.owner,
-          project.members);
+          project.getNo(),
+          project.getTitle(),
+          project.getStartDate(),
+          project.getEndDate(),
+          project.getOwner(),
+          project.getMembers());
     }
   }
 }
