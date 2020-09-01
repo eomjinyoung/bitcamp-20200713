@@ -371,3 +371,6 @@ macOS 개발 환경 구축하기
 
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 18 버전 수행: CRUD (계속)
+- 제네릭 사용법
+  - com.eomcs.generic 패키지 예제
+  
