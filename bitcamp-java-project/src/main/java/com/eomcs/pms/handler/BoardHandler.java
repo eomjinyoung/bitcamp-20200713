@@ -29,8 +29,9 @@ public class BoardHandler {
   public void list() {
     System.out.println("[게시물 목록]");
 
-    Board[] boards = new Board[boardList.size()];
-    boardList.toArray(boards);
+    //Board[] boards = new Board[boardList.size()];
+    //boardList.toArray(boards);
+    Board[] boards = boardList.toArray(new Board[] {});
 
     for (Board board : boards) {
       System.out.printf("%d, %s, %s, %s, %d\n",

@@ -1,7 +1,7 @@
 package com.eomcs.util;
 
-import java.util.Arrays;
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ArrayList<E> {
 
@@ -116,11 +116,12 @@ public class ArrayList<E> {
     return arr;
      */
   }
-  
+
   @SuppressWarnings("unchecked")
   public E[] toArray(E[] arr) {
     if (arr.length < size) {
       arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), this.size);
+      //return (E[]) Arrays.copyOf(this.elementData, this.size, arr.getClass());
     }
     System.arraycopy(
         this.elementData, 
