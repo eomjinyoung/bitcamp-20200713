@@ -41,7 +41,7 @@ public class BoardHandler {
           board.getViewCount());
     }
   }
-  
+
   public void detail () {
     System.out.println("[게시글 상세조회]");
     int no = Prompt.inputInt("번호? ");
@@ -50,14 +50,42 @@ public class BoardHandler {
       System.out.println("해당 번호의 게시글이 없습니다.");
     } else {
       board.setViewCount(board.getViewCount() + 1);
-      
+
       System.out.printf("제목: %s\n", board.getTitle());
       System.out.printf("내용: %s\n", board.getContent());
       System.out.printf("등록일: %s\n", board.getRegisteredDate());
       System.out.printf("조회수: %s\n", board.getViewCount());
     }
   }
-  
+
+  public void update() {
+    System.out.println("[게시글 변경]");
+    int no = Prompt.inputInt("번호? ");
+    Board board = findByNo(no);
+    if (board == null) {
+      System.out.println("해당 번호의 게시글이 없습니다.");
+    } else {
+      String originValue = board.getTitle();
+      String promptTitle = String.format("제목(%s)? ", originValue);
+      String title = Prompt.inputString(promptTitle);
+
+      String content = Prompt.inputString(
+          String.format("내용(%s)? ", board.getContent()));
+      String writer = Prompt.inputString(
+          String.format("작성자(%s)? ", board.getWriter()));
+
+      String response = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
+      if (response.equalsIgnoreCase("y")) {
+        board.setTitle(title);
+        board.setContent(content);
+        board.setWriter(writer);
+        System.out.println("게시글을 변경하였습니다.");
+      } else {
+        System.out.println("게시글 변경을 취소하였습니다.");
+      }
+    }
+  }
+
   private Board findByNo(int no) {
     for (int i = 0; i < boardList.size(); i++) {
       Board board = boardList.get(i);
@@ -67,6 +95,7 @@ public class BoardHandler {
     }
     return null;
   }
+
 }
 
 
