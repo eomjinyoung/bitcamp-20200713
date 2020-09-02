@@ -24,7 +24,7 @@ public class App {
     TaskHandler taskHandler = new TaskHandler(memberHandler);
 
     Stack<String> commandList = new Stack<>();
-    Queue commandList2 = new Queue();
+    Queue<String> commandList2 = new Queue<>();
 
     loop:
       while (true) {
@@ -74,9 +74,9 @@ public class App {
     Prompt.close();
   }
 
-  private static void printCommandHistory2(Queue commandList2) {
+  private static void printCommandHistory2(Queue<String> commandList2) {
     try {
-      Queue commandQueue = commandList2.clone();
+      Queue<String> commandQueue = commandList2.clone();
       for (int count = 1; commandQueue.size() > 0; count++) {
         System.out.println(commandQueue.poll());
 

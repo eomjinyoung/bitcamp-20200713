@@ -13,7 +13,7 @@ import com.eomcs.algorithm.data_structure.linkedlist.MyLinkedList;
 // 테스트3: MyQueueTest3
 // 6) 제네릭 적용
 //
-public class MyQueue<E> extends MyLinkedList<E> implements Cloneable {
+public class MyQueue06<E> extends MyLinkedList<E> implements Cloneable {
 
   public boolean offer(E e) {
     return add(e);
@@ -35,8 +35,8 @@ public class MyQueue<E> extends MyLinkedList<E> implements Cloneable {
 
   @SuppressWarnings("unchecked")
   @Override
-  public MyQueue<E> clone() throws CloneNotSupportedException {
-    MyQueue<E> newQueue = new MyQueue<>();
+  public MyQueue06<E> clone() throws CloneNotSupportedException {
+    MyQueue06<E> newQueue = new MyQueue06<>();
     //Object[] values = this.toArray();
     for (Object value : this.toArray()) {
       newQueue.offer((E)value);
