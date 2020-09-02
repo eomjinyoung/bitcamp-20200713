@@ -75,15 +75,20 @@ public class App {
   }
 
   private static void printCommandHistory2(Queue commandList2) {
-    for (int count = 1; commandList2.size() > 0; count++) {
-      System.out.println(commandList2.poll());
+    try {
+      Queue commandQueue = commandList2.clone();
+      for (int count = 1; commandQueue.size() > 0; count++) {
+        System.out.println(commandQueue.poll());
 
-      if ((count % 5) == 0) {
-        String response = Prompt.inputString(":");
-        if (response.equalsIgnoreCase("q")) {
-          break;
+        if ((count % 5) == 0) {
+          String response = Prompt.inputString(":");
+          if (response.equalsIgnoreCase("q")) {
+            break;
+          }
         }
       }
+    } catch (Exception e) {
+      System.out.println("history2 명령 처리 중 오류 발생!");
     }
   }
 

@@ -4,7 +4,11 @@ package com.eomcs.util;
 // 2) Queue에 값을 추가하는 offer(Object)를 정의한다.
 // 3) Queue에서 값을 꺼내는 poll()을 정의한다.
 // 4) Queue에서 제일 앞에 있는 값을 조회하는 peek()을 정의한다.
-public class Queue extends LinkedList {
+//
+// 테스트2: MyQueueTest2
+// 5) Queue.clone() 오버라이딩 : deep copy
+// 
+public class Queue extends LinkedList implements Cloneable {
 
   public boolean offer(Object e) {
     return add(e);
@@ -23,4 +27,21 @@ public class Queue extends LinkedList {
     }
     return get(0);
   }
+
+  @Override
+  public Queue clone() throws CloneNotSupportedException {
+    Queue newQueue = new Queue();
+    Object[] values = this.toArray();
+    for (Object value : values) {
+      newQueue.offer(value);
+    }
+    return newQueue;
+  }
+
 }
+
+
+
+
+
+

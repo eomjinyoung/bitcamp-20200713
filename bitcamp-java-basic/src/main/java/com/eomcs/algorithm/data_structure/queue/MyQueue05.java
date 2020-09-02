@@ -10,7 +10,7 @@ import com.eomcs.algorithm.data_structure.linkedlist.MyLinkedList;
 // 테스트2: MyQueueTest2
 // 5) Queue.clone() 오버라이딩 : deep copy
 // 
-public class MyQueue extends MyLinkedList implements Cloneable {
+public class MyQueue05 extends MyLinkedList implements Cloneable {
 
   public boolean offer(Object e) {
     return add(e);
@@ -31,8 +31,8 @@ public class MyQueue extends MyLinkedList implements Cloneable {
   }
 
   @Override
-  public MyQueue clone() throws CloneNotSupportedException {
-    MyQueue newQueue = new MyQueue();
+  public MyQueue05 clone() throws CloneNotSupportedException {
+    MyQueue05 newQueue = new MyQueue05();
     Object[] values = this.toArray();
     for (Object value : values) {
       newQueue.offer(value);
