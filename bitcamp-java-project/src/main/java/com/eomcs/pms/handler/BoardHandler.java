@@ -2,13 +2,13 @@ package com.eomcs.pms.handler;
 
 import java.sql.Date;
 import com.eomcs.pms.domain.Board;
-import com.eomcs.util.ArrayList;
+import com.eomcs.util.LinkedList;
 import com.eomcs.util.Prompt;
 
 public class BoardHandler {
 
   // 제네릭이 적용된 클래스를 사용할 때는 그 클래스가 다루는 객체의 타입을 알려줘야 한다.
-  ArrayList<Board> boardList = new ArrayList<>();
+  LinkedList<Board> boardList = new LinkedList<>();
 
   public void add() {
     System.out.println("[게시물 등록]");

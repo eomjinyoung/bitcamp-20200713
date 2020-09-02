@@ -1,12 +1,12 @@
 package com.eomcs.pms.handler;
 
 import com.eomcs.pms.domain.Member;
-import com.eomcs.util.ArrayList;
+import com.eomcs.util.LinkedList;
 import com.eomcs.util.Prompt;
 
 public class MemberHandler {
 
-  ArrayList<Member> memberList = new ArrayList<>();
+  LinkedList<Member> memberList = new LinkedList<>();
 
   public void add() {
     System.out.println("[회원 등록]");

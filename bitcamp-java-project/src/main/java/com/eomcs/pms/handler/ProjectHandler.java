@@ -2,12 +2,12 @@ package com.eomcs.pms.handler;
 
 import java.sql.Date;
 import com.eomcs.pms.domain.Project;
-import com.eomcs.util.ArrayList;
+import com.eomcs.util.LinkedList;
 import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
 
-  ArrayList<Project> projectList = new ArrayList<>();
+  LinkedList<Project> projectList = new LinkedList<>();
   MemberHandler memberHandler;
 
   public ProjectHandler(MemberHandler memberHandler) {
