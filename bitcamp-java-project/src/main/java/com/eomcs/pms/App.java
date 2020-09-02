@@ -5,6 +5,7 @@ import com.eomcs.pms.handler.MemberHandler;
 import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
 import com.eomcs.util.Prompt;
+import com.eomcs.util.Queue;
 import com.eomcs.util.Stack;
 
 public class App {
@@ -23,6 +24,7 @@ public class App {
     TaskHandler taskHandler = new TaskHandler(memberHandler);
 
     Stack<String> commandList = new Stack<>();
+    Queue commandList2 = new Queue();
 
     loop:
       while (true) {
@@ -30,6 +32,7 @@ public class App {
 
         // 명령어를 보관한다.
         commandList.push(command);
+        commandList2.offer(command);
 
         switch (command) {
           case "/member/add": memberHandler.add(); break;
@@ -57,6 +60,7 @@ public class App {
           case "/board6/add": boardHandler6.add(); break;
           case "/board6/list": boardHandler6.list(); break;
           case "history": printCommandHistory(commandList); break;
+          case "history2": printCommandHistory2(commandList2); break;
           case "quit":
           case "exit":
             System.out.println("안녕!");
@@ -68,6 +72,19 @@ public class App {
       }
 
     Prompt.close();
+  }
+
+  private static void printCommandHistory2(Queue commandList2) {
+    for (int count = 1; commandList2.size() > 0; count++) {
+      System.out.println(commandList2.poll());
+
+      if ((count % 5) == 0) {
+        String response = Prompt.inputString(":");
+        if (response.equalsIgnoreCase("q")) {
+          break;
+        }
+      }
+    }
   }
 
   private static void printCommandHistory(Stack<String> commandList) {
