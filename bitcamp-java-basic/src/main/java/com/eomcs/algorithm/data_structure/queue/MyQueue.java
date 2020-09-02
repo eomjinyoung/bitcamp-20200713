@@ -33,8 +33,8 @@ public class MyQueue extends MyLinkedList implements Cloneable {
   @Override
   public MyQueue clone() throws CloneNotSupportedException {
     MyQueue newQueue = new MyQueue();
-    Object[] values = this.toArray();
-    for (Object value : values) {
+    //Object[] values = this.toArray();
+    for (Object value : this.toArray()) {
       newQueue.offer(value);
     }
     return newQueue;
