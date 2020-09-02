@@ -17,7 +17,7 @@ package com.eomcs.algorithm.data_structure.linkedlist;
 // 테스트2: MyLinkedListTest2
 // 11) 제네릭을 적용한다.
 //
-public class MyLinkedList<E> {
+public class MyLinkedList11<E> {
 
   // 값을 찾을 때는 첫 번째 노드부터 따라간다.
   private Node<E> first;
