@@ -4,8 +4,8 @@ import com.eomcs.pms.handler.BoardHandler;
 import com.eomcs.pms.handler.MemberHandler;
 import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
-import com.eomcs.util.ArrayList;
 import com.eomcs.util.Prompt;
+import com.eomcs.util.Stack;
 
 public class App {
 
@@ -22,14 +22,14 @@ public class App {
     ProjectHandler projectHandler = new ProjectHandler(memberHandler);
     TaskHandler taskHandler = new TaskHandler(memberHandler);
 
-    ArrayList<String> commandList = new ArrayList<>();
+    Stack commandList = new Stack();
 
     loop:
       while (true) {
         String command = Prompt.inputString("명령> ");
 
         // 명령어를 보관한다.
-        commandList.add(command);
+        commandList.push(command);
 
         switch (command) {
           case "/member/add": memberHandler.add(); break;
@@ -70,9 +70,10 @@ public class App {
     Prompt.close();
   }
 
-  private static void printCommandHistory(ArrayList<String> commandList) {
-    for (int i = commandList.size() - 1, count = 1; i >= 0; i--, count++) {
-      System.out.println(commandList.get(i));
+  private static void printCommandHistory(Stack commandList) {
+    Stack commandStack = commandList.clone();
+    for (int count = 1; !commandList.empty(); count++) {
+      System.out.println(commandList.pop());
 
       if ((count % 5) == 0) {
         String response = Prompt.inputString(":");
