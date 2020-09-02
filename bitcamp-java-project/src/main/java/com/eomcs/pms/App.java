@@ -71,8 +71,15 @@ public class App {
   }
 
   private static void printCommandHistory(ArrayList<String> commandList) {
-    for (int i = commandList.size() - 1; i >= 0; i--) {
+    for (int i = commandList.size() - 1, count = 1; i >= 0; i--, count++) {
       System.out.println(commandList.get(i));
+
+      if ((count % 5) == 0) {
+        String response = Prompt.inputString(":");
+        if (response.equalsIgnoreCase("q")) {
+          break;
+        }
+      }
     }
   }
 }
