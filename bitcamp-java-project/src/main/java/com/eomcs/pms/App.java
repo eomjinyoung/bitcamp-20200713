@@ -71,16 +71,20 @@ public class App {
   }
 
   private static void printCommandHistory(Stack commandList) {
-    Stack commandStack = commandList.clone();
-    for (int count = 1; !commandList.empty(); count++) {
-      System.out.println(commandList.pop());
+    try {
+      Stack commandStack = commandList.clone(); 
+      for (int count = 1; !commandStack.empty(); count++) {
+        System.out.println(commandStack.pop());
 
-      if ((count % 5) == 0) {
-        String response = Prompt.inputString(":");
-        if (response.equalsIgnoreCase("q")) {
-          break;
+        if ((count % 5) == 0) {
+          String response = Prompt.inputString(":");
+          if (response.equalsIgnoreCase("q")) {
+            break;
+          }
         }
       }
+    } catch (Exception e) {
+      System.out.println("history 명령 처리 중 오류 발생!");
     }
   }
 }

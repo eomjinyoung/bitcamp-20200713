@@ -2,12 +2,7 @@ package com.eomcs.util;
 
 import java.util.EmptyStackException;
 
-// 1) Stack 을 구현하기 위해 기존에 작성한 MyLinkedList를 상속 받는다.
-// 2) 스택에 값을 추가하는 push() 메서드를 정의한다.
-// 3) 스택에서 제일 마지막에 추가한 값을 꺼내는 pop() 메서드를 정의한다.
-// 4) 스택에서 제일 마지막에 입력한 값을 조회하는 peek()을 정의한다.
-// 5) 스택이 비어 있는지 알려주는 empty()를 정의한다.
-public class Stack extends LinkedList {
+public class Stack extends LinkedList implements Cloneable {
 
   public Object push(Object item) {
     add(item);
@@ -30,6 +25,21 @@ public class Stack extends LinkedList {
 
   public boolean empty() {
     return this.size() == 0;
+  }
+
+  @Override
+  public Stack clone() throws CloneNotSupportedException {
+    // 새 스택을 만든다.
+    Stack newStack = new Stack();
+
+    // 기존 스택의 값을 가져온다.
+    Object[] values = this.toArray();
+
+    // 기존 스택의 값을 새 스택에 넣는다.
+    for(Object value : values) {
+      newStack.push(value);
+    }
+    return newStack;
   }
 }
 
