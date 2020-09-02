@@ -39,7 +39,17 @@ public class MyStack extends MyLinkedList implements Cloneable {
 
   @Override
   public MyStack clone() throws CloneNotSupportedException {
-    return (MyStack) super.clone();
+    // 새 스택을 만든다.
+    MyStack newStack = new MyStack();
+
+    // 기존 스택의 값을 가져온다.
+    Object[] values = this.toArray();
+
+    // 기존 스택의 값을 새 스택에 넣는다.
+    for(Object value : values) {
+      newStack.push(value);
+    }
+    return newStack;
   }
 }
 
