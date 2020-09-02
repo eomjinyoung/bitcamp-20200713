@@ -1,6 +1,7 @@
-package com.eomcs.util;
+package com.eomcs.algorithm.data_structure.stack;
 
 import java.util.EmptyStackException;
+import com.eomcs.algorithm.data_structure.linkedlist.MyLinkedList;
 
 // 1) Stack 을 구현하기 위해 기존에 작성한 MyLinkedList를 상속 받는다.
 // 2) 스택에 값을 추가하는 push() 메서드를 정의한다.
@@ -14,7 +15,7 @@ import java.util.EmptyStackException;
 // 테스트3: MyStackTest3
 // 7) 제네릭 적용
 //
-public class Stack<E> extends LinkedList<E> implements Cloneable {
+public class MyStack07<E> extends MyLinkedList<E> implements Cloneable {
 
   public E push(E item) {
     add(item);
@@ -41,9 +42,9 @@ public class Stack<E> extends LinkedList<E> implements Cloneable {
 
   @SuppressWarnings("unchecked")
   @Override
-  public Stack<E> clone() throws CloneNotSupportedException {
+  public MyStack07<E> clone() throws CloneNotSupportedException {
     // 새 스택을 만든다.
-    Stack<E> newStack = new Stack<E>();
+    MyStack07<E> newStack = new MyStack07<E>();
 
     // 기존 스택의 값을 가져온다.
     Object[] values = this.toArray();

@@ -22,7 +22,7 @@ public class App {
     ProjectHandler projectHandler = new ProjectHandler(memberHandler);
     TaskHandler taskHandler = new TaskHandler(memberHandler);
 
-    Stack commandList = new Stack();
+    Stack<String> commandList = new Stack<>();
 
     loop:
       while (true) {
@@ -70,9 +70,9 @@ public class App {
     Prompt.close();
   }
 
-  private static void printCommandHistory(Stack commandList) {
+  private static void printCommandHistory(Stack<String> commandList) {
     try {
-      Stack commandStack = commandList.clone(); 
+      Stack<String> commandStack = commandList.clone(); 
       for (int count = 1; !commandStack.empty(); count++) {
         System.out.println(commandStack.pop());
 
