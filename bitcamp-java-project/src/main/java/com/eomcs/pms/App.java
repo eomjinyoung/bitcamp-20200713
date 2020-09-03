@@ -1,9 +1,11 @@
 package com.eomcs.pms;
 
+import com.eomcs.pms.domain.Board;
 import com.eomcs.pms.handler.BoardHandler;
 import com.eomcs.pms.handler.MemberHandler;
 import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
+import com.eomcs.util.LinkedList;
 import com.eomcs.util.Prompt;
 import com.eomcs.util.Queue;
 import com.eomcs.util.Stack;
@@ -12,12 +14,10 @@ public class App {
 
   public static void main(String[] args) {
 
-    BoardHandler boardHandler = new BoardHandler();
-    BoardHandler boardHandler2 = new BoardHandler();
-    BoardHandler boardHandler3 = new BoardHandler();
-    BoardHandler boardHandler4 = new BoardHandler();
-    BoardHandler boardHandler5 = new BoardHandler();
-    BoardHandler boardHandler6 = new BoardHandler();
+    LinkedList<Board> boardList = new LinkedList<>();
+    // BoardHandler가 작업하는데 필요한 객체(의존 객체)를 이렇게 외부에서 생성자를 통해 주입한다.
+    // => '의존 객체 주입(Dependency Injection; DI)' 이라 부른다.
+    BoardHandler boardHandler = new BoardHandler(boardList);
 
     MemberHandler memberHandler = new MemberHandler();
     ProjectHandler projectHandler = new ProjectHandler(memberHandler);
@@ -49,16 +49,6 @@ public class App {
           case "/board/detail": boardHandler.detail(); break;
           case "/board/update": boardHandler.update(); break;
           case "/board/delete": boardHandler.delete(); break;
-          case "/board2/add": boardHandler2.add(); break;
-          case "/board2/list": boardHandler2.list(); break;
-          case "/board3/add": boardHandler3.add(); break;
-          case "/board3/list": boardHandler3.list(); break;
-          case "/board4/add": boardHandler4.add(); break;
-          case "/board4/list": boardHandler4.list(); break;
-          case "/board5/add": boardHandler5.add(); break;
-          case "/board5/list": boardHandler5.list(); break;
-          case "/board6/add": boardHandler6.add(); break;
-          case "/board6/list": boardHandler6.list(); break;
           case "history": printCommandHistory(commandList); break;
           case "history2": printCommandHistory2(commandList2); break;
           case "quit":
