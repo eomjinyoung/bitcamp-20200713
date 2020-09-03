@@ -1,10 +1,14 @@
 package com.eomcs.pms;
 
 import com.eomcs.pms.domain.Board;
+import com.eomcs.pms.domain.Member;
+import com.eomcs.pms.domain.Project;
+import com.eomcs.pms.domain.Task;
 import com.eomcs.pms.handler.BoardHandler;
 import com.eomcs.pms.handler.MemberHandler;
 import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
+import com.eomcs.util.ArrayList;
 import com.eomcs.util.LinkedList;
 import com.eomcs.util.Prompt;
 import com.eomcs.util.Queue;
@@ -19,9 +23,14 @@ public class App {
     // => '의존 객체 주입(Dependency Injection; DI)' 이라 부른다.
     BoardHandler boardHandler = new BoardHandler(boardList);
 
-    MemberHandler memberHandler = new MemberHandler();
-    ProjectHandler projectHandler = new ProjectHandler(memberHandler);
-    TaskHandler taskHandler = new TaskHandler(memberHandler);
+    ArrayList<Member> memberList = new ArrayList<>();
+    MemberHandler memberHandler = new MemberHandler(memberList);
+
+    LinkedList<Project> projectList = new LinkedList<>();
+    ProjectHandler projectHandler = new ProjectHandler(projectList, memberHandler);
+
+    ArrayList<Task> taskList = new ArrayList<>();
+    TaskHandler taskHandler = new TaskHandler(taskList, memberHandler);
 
     Stack<String> commandList = new Stack<>();
     Queue<String> commandList2 = new Queue<>();
