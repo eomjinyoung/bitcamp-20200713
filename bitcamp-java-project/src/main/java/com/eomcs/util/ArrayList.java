@@ -3,7 +3,7 @@ package com.eomcs.util;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class ArrayList<E> extends List<E> {
+public class ArrayList<E> extends AbstractList<E> {
 
   private static final int DEFAULT_CAPACITY = 5;
   private Object[] elementData;

@@ -2,7 +2,7 @@ package com.eomcs.util;
 
 import java.lang.reflect.Array;
 
-public class LinkedList<E> extends List<E> {
+public class LinkedList<E> extends AbstractList<E> {
 
   private Node<E> first;
   private Node<E> last;

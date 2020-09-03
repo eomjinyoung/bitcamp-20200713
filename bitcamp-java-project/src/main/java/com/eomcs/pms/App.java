@@ -8,6 +8,7 @@ import com.eomcs.pms.handler.BoardHandler;
 import com.eomcs.pms.handler.MemberHandler;
 import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
+import com.eomcs.util.AbstractList;
 import com.eomcs.util.ArrayList;
 import com.eomcs.util.LinkedList;
 import com.eomcs.util.Prompt;
@@ -18,18 +19,25 @@ public class App {
 
   public static void main(String[] args) {
 
-    LinkedList<Board> boardList = new LinkedList<>();
+    // 추상 클래스는 인스턴스를 만들 수 없다.
+    // => 화나는가? 화내지 말라.
+    // => 그 추상 클래스를 만든 개발자는 
+    //    서브 클래스를 만들 때 상속 받는 용으로 쓰라고 만든 클래스다.
+    // => 그러니 일반 용도로 사용하지 못하게 막는 것은 당연하다.
+    //AbstractList<Board> boardList = new AbstractList<>(); // 컴파일 오류!
+
+    AbstractList<Board> boardList = new ArrayList<>();
     // BoardHandler가 작업하는데 필요한 객체(의존 객체)를 이렇게 외부에서 생성자를 통해 주입한다.
     // => '의존 객체 주입(Dependency Injection; DI)' 이라 부른다.
     BoardHandler boardHandler = new BoardHandler(boardList);
 
-    ArrayList<Member> memberList = new ArrayList<>();
+    AbstractList<Member> memberList = new ArrayList<>();
     MemberHandler memberHandler = new MemberHandler(memberList);
 
-    LinkedList<Project> projectList = new LinkedList<>();
+    AbstractList<Project> projectList = new LinkedList<>();
     ProjectHandler projectHandler = new ProjectHandler(projectList, memberHandler);
 
-    ArrayList<Task> taskList = new ArrayList<>();
+    AbstractList<Task> taskList = new ArrayList<>();
     TaskHandler taskHandler = new TaskHandler(taskList, memberHandler);
 
     Stack<String> commandList = new Stack<>();
