@@ -2,7 +2,7 @@ package com.eomcs.util;
 
 import java.lang.reflect.Array;
 
-public class LinkedList<E> extends List {
+public class LinkedList<E> extends List<E> {
 
   private Node<E> first;
   private Node<E> last;
@@ -19,6 +19,7 @@ public class LinkedList<E> extends List {
   }
 
 
+  @Override
   public boolean add(E e) {
     Node<E> node = new Node<>();
     node.value = e;
@@ -35,6 +36,7 @@ public class LinkedList<E> extends List {
     return true;
   }
 
+  @Override
   public E get(int index) {
     if (index < 0 || index >= this.size) {
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다.");
@@ -47,6 +49,7 @@ public class LinkedList<E> extends List {
     return cursor.value;
   }
 
+  @Override
   public void add(int index, E element) {
     if (index < 0 || index > this.size) {
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다.");
@@ -75,6 +78,7 @@ public class LinkedList<E> extends List {
     }
   }
 
+  @Override
   public E remove(int index) {
     if (index < 0 || index >= this.size) {
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다.");
@@ -105,6 +109,7 @@ public class LinkedList<E> extends List {
     return old.value;
   }
 
+  @Override
   public E set(int index, E element) {
     if (index < 0 || index >= this.size) {
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다.");
@@ -121,6 +126,7 @@ public class LinkedList<E> extends List {
     return old;
   }
 
+  @Override
   public Object[] toArray() {
     Object[] arr = new Object[this.size];
 
@@ -135,6 +141,7 @@ public class LinkedList<E> extends List {
     return arr;
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public E[] toArray(E[] arr) {
     if (arr.length < this.size()) {

@@ -3,7 +3,7 @@ package com.eomcs.util;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class ArrayList<E> extends List {
+public class ArrayList<E> extends List<E> {
 
   private static final int DEFAULT_CAPACITY = 5;
   private Object[] elementData;
@@ -21,6 +21,7 @@ public class ArrayList<E> extends List {
     }
   }
 
+  @Override
   public boolean add(E e) {
     if (size == elementData.length) {
       grow();
@@ -43,6 +44,7 @@ public class ArrayList<E> extends List {
   }
 
 
+  @Override
   public void add(int index, E element) {
     if (size == elementData.length) {
       grow();
@@ -57,6 +59,7 @@ public class ArrayList<E> extends List {
     size++;
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public E get(int index) {
     if (index < 0 || index >= size) {
@@ -65,6 +68,7 @@ public class ArrayList<E> extends List {
     return (E) elementData[index];
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public E set(int index, E element) {
     if (index < 0 || index >= size) {
@@ -75,6 +79,7 @@ public class ArrayList<E> extends List {
     return (E) old;
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public E remove(int index) {
     Object old = elementData[index];
@@ -102,6 +107,7 @@ public class ArrayList<E> extends List {
 
 
 
+  @Override
   public Object[] toArray() {
     Object[] arr = Arrays.copyOf(elementData, this.size);
     //System.out.println(elementData == arr); //false
@@ -115,6 +121,7 @@ public class ArrayList<E> extends List {
      */
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public E[] toArray(E[] arr) {
     if (arr.length < size) {
