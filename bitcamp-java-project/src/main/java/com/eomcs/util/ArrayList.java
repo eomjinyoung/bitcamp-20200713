@@ -3,11 +3,11 @@ package com.eomcs.util;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class ArrayList<E> {
+public class ArrayList<E> extends List {
 
   private static final int DEFAULT_CAPACITY = 5;
   private Object[] elementData;
-  private int size;
+
 
   public ArrayList() {
     elementData = new Object[DEFAULT_CAPACITY];
@@ -100,9 +100,7 @@ public class ArrayList<E> {
     return (E) old;
   }
 
-  public int size() {
-    return this.size;
-  }
+
 
   public Object[] toArray() {
     Object[] arr = Arrays.copyOf(elementData, this.size);
