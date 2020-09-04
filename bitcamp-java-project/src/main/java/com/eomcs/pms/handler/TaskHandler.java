@@ -2,22 +2,15 @@ package com.eomcs.pms.handler;
 
 import java.sql.Date;
 import com.eomcs.pms.domain.Task;
-import com.eomcs.util.AbstractList;
+import com.eomcs.util.List;
 import com.eomcs.util.Prompt;
 
 public class TaskHandler {
 
   MemberHandler memberHandler;
-  // 1) 다형적 변수의 활용
-  // - 목록을 다루는 데 필요한 의존 객체를 특정 클래스로 제한하지 말고 
-  // - 상위 클래스의 레퍼런스를 사용하여 여러 개의 서브 클래스를 사용할 수 있도록 유연성을 제공하자.
-  AbstractList<Task> taskList;
+  List<Task> taskList;
 
-  // 2) 의존 객체 주입 활용
-  // - 의존 객체를 이 클래스에서 직접 생성하지 말고 외부로부터 주입 받는다.
-  // - 생성자의 특성을 이용하자.
-  // - 생성자? 객체가 작업하는 데 필요한 기본 값 또는 의존 객체를 준비하는 메서드.
-  public TaskHandler(AbstractList<Task> list, MemberHandler memberHandler) {
+  public TaskHandler(List<Task> list, MemberHandler memberHandler) {
     this.taskList = list;
     this.memberHandler = memberHandler;
   }
