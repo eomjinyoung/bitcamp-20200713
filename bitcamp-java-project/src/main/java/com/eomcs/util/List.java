@@ -11,4 +11,7 @@ public interface List<E> {
   E remove(int index);
   Object[] toArray();
   E[] toArray(E[] arr);
+
+  // Iterator 구현체를 리턴해주는 메서드
+  Iterator<E> iterator();
 }

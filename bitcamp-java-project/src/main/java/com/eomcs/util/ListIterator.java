@@ -28,7 +28,7 @@ public class ListIterator<E> implements Iterator<E> {
   @Override
   public E next() {
     if (cursor == list.size()) 
-      throw new NoSuchElementException();
+      throw new NoSuchElementException(); // 목록에 데이터가 없다는 것을 알려주는 예외 클래스다.
     return list.get(cursor++);
   }
 }
