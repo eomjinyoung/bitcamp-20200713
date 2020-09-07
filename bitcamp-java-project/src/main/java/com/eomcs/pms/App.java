@@ -9,6 +9,7 @@ import com.eomcs.pms.handler.MemberHandler;
 import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
 import com.eomcs.util.ArrayList;
+import com.eomcs.util.Iterator;
 import com.eomcs.util.LinkedList;
 import com.eomcs.util.List;
 import com.eomcs.util.Prompt;
@@ -92,11 +93,12 @@ public class App {
 
   private static void printCommandHistory(Stack<String> commandList) {
     try {
-      Stack<String> commandStack = commandList.clone(); 
-      for (int count = 1; !commandStack.empty(); count++) {
-        System.out.println(commandStack.pop());
+      Iterator<String> iterator = commandList.iterator();
+      int count = 1;
+      while (iterator.hasNext()) {
+        System.out.println(iterator.next());
 
-        if ((count % 5) == 0) {
+        if ((count++ % 5) == 0) {
           String response = Prompt.inputString(":");
           if (response.equalsIgnoreCase("q")) {
             break;
