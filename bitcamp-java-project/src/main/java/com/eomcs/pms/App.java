@@ -58,8 +58,8 @@ public class App {
           case "/board/detail": boardHandler.detail(); break;
           case "/board/update": boardHandler.update(); break;
           case "/board/delete": boardHandler.delete(); break;
-          case "history": printCommandHistory(commandList); break;
-          case "history2": printCommandHistory2(commandList2); break;
+          case "history": printCommandHistory(commandList.iterator()); break;
+          case "history2": printCommandHistory(commandList2.iterator()); break;
           case "quit":
           case "exit":
             System.out.println("안녕!");
@@ -73,9 +73,8 @@ public class App {
     Prompt.close();
   }
 
-  private static void printCommandHistory2(Queue<String> commandList2) {
+  private static void printCommandHistory(Iterator<String> iterator) {
     try {
-      Iterator<String> iterator = commandList2.iterator();
       int count = 1;
       while (iterator.hasNext()) {
         System.out.println(iterator.next());
@@ -88,26 +87,7 @@ public class App {
         }
       }
     } catch (Exception e) {
-      System.out.println("history2 명령 처리 중 오류 발생!");
-    }
-  }
-
-  private static void printCommandHistory(Stack<String> commandList) {
-    try {
-      Iterator<String> iterator = commandList.iterator();
-      int count = 1;
-      while (iterator.hasNext()) {
-        System.out.println(iterator.next());
-
-        if ((count++ % 5) == 0) {
-          String response = Prompt.inputString(":");
-          if (response.equalsIgnoreCase("q")) {
-            break;
-          }
-        }
-      }
-    } catch (Exception e) {
-      System.out.println("history 명령 처리 중 오류 발생!");
+      System.out.println("명령 처리 중 오류 발생!");
     }
   }
 }
