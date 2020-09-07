@@ -42,6 +42,20 @@ public class Queue<E> extends LinkedList<E> implements Cloneable {
     return newQueue;
   }
 
+  // 상속 받은 메서드가 서브 클래스의 역할에 맞지 않다면 
+  // 역할에 맞게끔 재정의 하라. => 오버라이딩
+  // AbstractList로부터 상속 받은  iterator()는 ListIterator 객체를 리턴한다.
+  // ListIterator 는 입력한 순서대로 조회한다.
+  // Queue도 입력한 순서대로 조회하는 것은 같다. 다만 맨 앞의 값을 꺼내서 삭제한다.
+  // 따라서 Queue 방식에 맞게 동작하는  Iterator를 리턴하도록 하라.
+  @Override
+  public Iterator<E> iterator() {
+    try {
+      return new QueueIterator<E>(this.clone());
+    } catch (Exception e) {
+      throw new RuntimeException("큐를 복제하는 중에 오류 발생!");
+    }
+  }
 }
 
 
