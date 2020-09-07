@@ -1,6 +1,7 @@
 package com.eomcs.pms.handler;
 
 import com.eomcs.pms.domain.Member;
+import com.eomcs.util.Iterator;
 import com.eomcs.util.List;
 import com.eomcs.util.Prompt;
 
@@ -30,8 +31,10 @@ public class MemberHandler {
   public void list() {
     System.out.println("[회원 목록]");
 
-    for (int i = 0; i < memberList.size(); i++) {
-      Member member = memberList.get(i);
+    Iterator<Member> iterator = memberList.iterator();
+
+    while (iterator.hasNext()) {
+      Member member = iterator.next();
       System.out.printf("%d, %s, %s, %s, %s\n",
           member.getNo(),
           member.getName(),
