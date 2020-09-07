@@ -75,11 +75,12 @@ public class App {
 
   private static void printCommandHistory2(Queue<String> commandList2) {
     try {
-      Queue<String> commandQueue = commandList2.clone();
-      for (int count = 1; commandQueue.size() > 0; count++) {
-        System.out.println(commandQueue.poll());
+      Iterator<String> iterator = commandList2.iterator();
+      int count = 1;
+      while (iterator.hasNext()) {
+        System.out.println(iterator.next());
 
-        if ((count % 5) == 0) {
+        if ((count++ % 5) == 0) {
           String response = Prompt.inputString(":");
           if (response.equalsIgnoreCase("q")) {
             break;
