@@ -402,3 +402,9 @@ macOS 개발 환경 구축하기
 
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 24 버전 수행: 인터페이스를 활용한 객체 사용 규칙 정의
+
+## 34일차(2020-09-07,월)
+
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 25 버전 수행: `Iterator` 디자인 패턴
+  - 26-a 버전 수행: 중첩 클래스 : 스태틱 중첩 클래스(static nested class)
