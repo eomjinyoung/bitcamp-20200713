@@ -1,16 +1,7 @@
 package com.eomcs.util;
 
-// 1) Queue 를 구현하기 위해 기존에 작성한 MyLinkedList를 상속 받는다.
-// 2) Queue에 값을 추가하는 offer(Object)를 정의한다.
-// 3) Queue에서 값을 꺼내는 poll()을 정의한다.
-// 4) Queue에서 제일 앞에 있는 값을 조회하는 peek()을 정의한다.
-//
-// 테스트2: MyQueueTest2
-// 5) Queue.clone() 오버라이딩 : deep copy
-// 
-// 테스트3: MyQueueTest3
-// 6) 제네릭 적용
-//
+import java.util.NoSuchElementException;
+
 public class Queue<E> extends LinkedList<E> implements Cloneable {
 
   public boolean offer(E e) {
@@ -56,6 +47,28 @@ public class Queue<E> extends LinkedList<E> implements Cloneable {
       throw new RuntimeException("큐를 복제하는 중에 오류 발생!");
     }
   }
+
+  private static class QueueIterator<E> implements Iterator<E> {
+
+    Queue<E> queue;
+
+    public QueueIterator(Queue<E> queue) {
+      this.queue = queue;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return queue.size() > 0;
+    }
+
+    @Override
+    public E next() {
+      if (queue.size() == 0) 
+        throw new NoSuchElementException(); // 목록에 데이터가 없다는 것을 알려주는 예외 클래스다.
+      return queue.poll();
+    }
+  }
+
 }
 
 
