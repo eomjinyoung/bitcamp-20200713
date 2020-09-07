@@ -2,33 +2,27 @@ package com.eomcs.util;
 
 import java.util.NoSuchElementException;
 
-// List 객체에서 값을 꺼내는 클래스를 정의한다.
+// Stack 객체에서 값을 꺼내는 클래스를 정의한다.
 // => Iterator 계약에 따라 동작하는 클래스다.
 // => 인터페이스를 구현하는 클래스를 보통 그 인터페이스의 구현체라 부른다.
 // => 즉 다음 클래스는 "Iterator의 구현체" 이다.
 public class StackIterator<E> implements Iterator<E> {
 
-  List<E> list;
-  int cursor; // 데이터 목록에서 값을 꺼낼 위치를 가리킨다.
+  Stack<E> stack;
 
-  public StackIterator(List<E> list) {
-    this.list = list;
+  public StackIterator(Stack<E> stack) {
+    this.stack = stack;
   }
 
   @Override
   public boolean hasNext() {
-    /*
-    if (cursor < list.size())
-      return true;
-    return false;
-     */
-    return cursor < list.size();
+    return !stack.empty();
   }
 
   @Override
   public E next() {
-    if (cursor == list.size()) 
+    if (stack.empty()) 
       throw new NoSuchElementException(); // 목록에 데이터가 없다는 것을 알려주는 예외 클래스다.
-    return list.get(cursor++);
+    return stack.pop();
   }
 }
