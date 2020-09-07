@@ -54,6 +54,21 @@ public class Stack<E> extends LinkedList<E> implements Cloneable {
     }
     return newStack;
   }
+
+  // 수퍼 클래스의  iterator()는 ListIterator 를 리턴한다.
+  // ListIterator는 Stack으로 목록을 관리하는 방식과 다르게 데이터를 조회하다.
+  // 따라서 Stack 에 맞는 Iterator를 리턴할 필요가 있다.
+  // => 오버라이딩을 이용하여 상속 받은 메서드를 서브 클래스에 맞게 재정의한다.
+  @Override
+  public Iterator<E> iterator() {
+    try {
+      return new StackIterator<E>(this.clone());
+    } catch (Exception e) {
+      // 스택을 복제하다가 오류가 발생하면 
+      // 이 메서드를 호출한 쪽에 오류 내용을 전달한다.
+      throw new RuntimeException("스택 복제 중에 오류 발생!");
+    }
+  }
 }
 
 
