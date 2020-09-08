@@ -408,3 +408,14 @@ macOS 개발 환경 구축하기
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 25 버전 수행: `Iterator` 디자인 패턴
   - 26-a 버전 수행: 중첩 클래스 : 스태틱 중첩 클래스(static nested class)
+- 중첩 클래스
+  - com.eomcs.oop.ex11 패키지 예제
+
+## 35일차(2020-09-08,화)
+
+- 중첩 클래스
+  - com.eomcs.oop.ex11 패키지 예제(계속)
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 26-b 버전 수행: 논스태틱 중첩 클래스(inner class)
+  - 26-c 버전 수행: 로컬 클래스(local class)
+  - 26-d 버전 수행: 익명 클래스(anonymous class)

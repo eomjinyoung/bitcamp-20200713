@@ -8,8 +8,14 @@ import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
 
-  MemberHandler memberHandler;
+  // 목록을 다루는 객체를 지정할 때,
+  // => 특정 클래스(예: AbstractList, LinkedList, ArrayList)를 지정하는 대신에,
+  // => 사용 규칙(예: List)을 지정함으로써
+  //    더 다양한 타입의 객체로 교체할 수 있게 만든다.
+  // => `List` 규칙을 따르는 객체라면 어떤 클래스의 객체든지 사용할 수 있다.
+  //    결국 유지보수를 더 유연하게 하기 위함이다.
   List<Project> projectList;
+  MemberHandler memberHandler;
 
   public ProjectHandler(List<Project> list, MemberHandler memberHandler) {
     this.projectList = list;
@@ -63,6 +69,8 @@ public class ProjectHandler {
   public void list() {
     System.out.println("[프로젝트 목록]");
 
+    // 전체 목록을 조회할 때 `Iterator` 객체를 사용한다.
+    // 만약 목록의 일부만 조회하면다면 인덱스를 직접 다루는 이전 방식을 사용해야 한다.
     Iterator<Project> iterator = projectList.iterator();
 
     while (iterator.hasNext()) {

@@ -2,9 +2,15 @@ package com.eomcs.util;
 
 import java.lang.reflect.Array;
 
+// List 를 상속 받기 때문에 
+// - size 필드는 제거한다.
+// - size() 메서드는 제거한다.
+// - 상속 받은 메서드를 구현한다.
+//
 public class LinkedList<E> extends AbstractList<E> {
 
   private Node<E> first;
+
   private Node<E> last;
 
   static class Node<E> {
@@ -17,7 +23,6 @@ public class LinkedList<E> extends AbstractList<E> {
       this.value = value;
     }
   }
-
 
   @Override
   public boolean add(E e) {
@@ -144,26 +149,34 @@ public class LinkedList<E> extends AbstractList<E> {
   @Override
   @SuppressWarnings("unchecked")
   public E[] toArray(E[] arr) {
-    if (arr.length < this.size()) {
-      // => 다음과 같이 배열의 타입을 엄격히 형변환 해도 된다.
-      Class<E[]> arrayClassInfo = (Class<E[]>)arr.getClass();
-      Class<E> arrayItemClassInfo = (Class<E>)arrayClassInfo.getComponentType();
 
-      // => 그러나 조회 용으로 사용할 거라면 굳이 리턴 값에 대해 제네릭 형변환을 엄격히 할 필요가 없다.
-      //Class<?> arrayClassInfo = arr.getClass();
-      //Class<?> arrayItemClassInfo = arrayClassInfo.getComponentType();
-
-      arr = (E[]) Array.newInstance(arrayItemClassInfo, this.size());
-
-      // => 그냥 다음과 같이 간략하게 표현하는 것이 코드를 읽기 쉽게 한다.
-      //arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), this.size());
+    if (arr.length < size) {
+      arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), size);
     }
 
-    Object[] originArr = this.toArray();
-    for (int i = 0; i < this.size(); i++) {
-      arr[i] = (E) originArr[i];
+    Node<E> cursor = first;
+    for (int i = 0; i < size; i++) {
+      arr[i] = cursor.value;
+      cursor = cursor.next;
     }
+
     return arr;
+  }
+
+  // Object.clone()을 오버라이딩 할 때 'deep copy' 이용하여 스택 객체 복사하기
+  // => 새 연결 리스트를 만들어 원본에 보관된 값을 복사한다.
+  // => 따라서 복사본의 Node 객체는 원본의 Node 객체와 다르다. 
+  //    복사본의 상태 변경에 원본은 영향 받지 않는다.
+  //
+  @SuppressWarnings("unchecked")
+  @Override
+  public LinkedList<E> clone() throws CloneNotSupportedException {
+    LinkedList<E> newList = new LinkedList<>();
+    Object[] values = this.toArray();
+    for (Object value : values) {
+      newList.add((E) value);
+    }
+    return newList;
   }
 }
 

@@ -3,7 +3,7 @@ package com.eomcs.util;
 import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
-public class Stack<E> extends LinkedList<E> implements Cloneable {
+public class Stack<E> extends LinkedList<E> {
 
   public E push(E item) {
     add(item);
@@ -25,46 +25,46 @@ public class Stack<E> extends LinkedList<E> implements Cloneable {
   }
 
   public boolean empty() {
-    return this.size() == 0;
+    return size() == 0;
   }
 
   @SuppressWarnings("unchecked")
   @Override
   public Stack<E> clone() throws CloneNotSupportedException {
-    // 새 스택을 만든다.
-    Stack<E> newStack = new Stack<E>();
-
-    // 기존 스택의 값을 가져온다.
+    Stack<E> newStack = new Stack<>();
     Object[] values = this.toArray();
-
-    // 기존 스택의 값을 새 스택에 넣는다.
-    for(Object value : values) {
+    for (Object value : values) {
       newStack.push((E) value);
     }
     return newStack;
   }
 
-  // 수퍼 클래스의  iterator()는 ListIterator 를 리턴한다.
-  // ListIterator는 Stack으로 목록을 관리하는 방식과 다르게 데이터를 조회하다.
-  // 따라서 Stack 에 맞는 Iterator를 리턴할 필요가 있다.
-  // => 오버라이딩을 이용하여 상속 받은 메서드를 서브 클래스에 맞게 재정의한다.
+  // AbstractList 에서 구현한 iterator()를 
+  // Stack 자료 구조에 맞춰 오버라이딩 한다.
   @Override
   public Iterator<E> iterator() {
-    try {
-      return new StackIterator<E>(this.clone());
-    } catch (Exception e) {
-      // 스택을 복제하다가 오류가 발생하면 
-      // 이 메서드를 호출한 쪽에 오류 내용을 전달한다.
-      throw new RuntimeException("스택 복제 중에 오류 발생!");
-    }
+    // StackIterator의 생성자에서 clone()에서 발생한 예외를 처리하도록 프로그래밍 했기 때문에
+    // 여기서는 할 필요가 없다.
+    return new StackIterator();
   }
 
-  private static class StackIterator<E> implements Iterator<E> {
-
+  // 논스태틱 중첩 클래스로 정의한 Iterator 구현체 
+  // => 바깥 클래스의 인스턴스 멤버를 직접 접근할 수 있다.
+  // => 생성자에서 바깥 클래스의 인스턴스를 받을 필요가 없다.
+  // => 바깥 클래스의 타입 파라미터를 그대로 사용하면 된다.
+  private class StackIterator implements Iterator<E> {
     Stack<E> stack;
 
-    public StackIterator(Stack<E> stack) {
-      this.stack = stack;
+    public StackIterator() {
+      try {
+        // 스택은 한 번 pop() 하면 데이터가 제거된다.
+        // 따라서 복제본을 만들어 사용한다.
+        this.stack = Stack.this.clone();
+      } catch (Exception e) {
+        // 스택을 복제할 때 오류가 발생한다면,
+        // 이 메서드를 호출한 쪽에 실행 오류를 던진다.
+        throw new RuntimeException("큐를 복제하는 중에 오류 발생!");
+      }
     }
 
     @Override
@@ -74,16 +74,9 @@ public class Stack<E> extends LinkedList<E> implements Cloneable {
 
     @Override
     public E next() {
-      if (stack.empty()) 
-        throw new NoSuchElementException(); // 목록에 데이터가 없다는 것을 알려주는 예외 클래스다.
+      if (stack.empty())
+        throw new NoSuchElementException();
       return stack.pop();
     }
   }
-
 }
-
-
-
-
-
-

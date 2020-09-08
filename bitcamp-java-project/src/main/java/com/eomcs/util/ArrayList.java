@@ -1,20 +1,23 @@
 package com.eomcs.util;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
+// List 를 상속 받기 때문에 
+// - size 필드는 제거한다.
+// - size() 메서드는 제거한다.
+// - 상속 받은 메서드를 구현한다.
+//
 public class ArrayList<E> extends AbstractList<E> {
 
-  private static final int DEFAULT_CAPACITY = 5;
-  private Object[] elementData;
-
+  static final int DEFAULT_CAPACITY = 3;
+  Object[] elementData;
 
   public ArrayList() {
     elementData = new Object[DEFAULT_CAPACITY];
   }
 
   public ArrayList(int initialCapacity) {
-    if (initialCapacity < DEFAULT_CAPACITY) {
+    if (initialCapacity <= DEFAULT_CAPACITY) {
       elementData = new Object[DEFAULT_CAPACITY];
     } else {
       elementData = new Object[initialCapacity];
@@ -31,18 +34,9 @@ public class ArrayList<E> extends AbstractList<E> {
   }
 
   private void grow() {
-    //System.out.println("오호라! 배열을 늘리자.");
     int newCapacity = elementData.length + (elementData.length >> 1);
     elementData = Arrays.copyOf(elementData, newCapacity);
-    /*
-    Object[] newArray = new Object[elementData.length + (elementData.length >> 1)];
-    for (int i = 0; i < elementData.length; i++) {
-      newArray[i] = elementData[i];
-    }
-    elementData = newArray;
-     */
   }
-
 
   @Override
   public void add(int index, E element) {
@@ -91,50 +85,27 @@ public class ArrayList<E> extends AbstractList<E> {
         index, // 복사 목적지 인덱스
         this.size - (index + 1) // 복사할 항목의 개수
         );
-    /*
-    for (int i = index; i < size - 1; i++) {
-      elementData[i] = elementData[i + 1];
-    }
-     */
 
     size--;
     elementData[size] = null;
-    // 쓰지 않는 인스턴스의 주소를 제거하여
-    // 가비지 될 수 있게 한다.
-
     return (E) old;
   }
-
-
 
   @Override
   public Object[] toArray() {
     Object[] arr = Arrays.copyOf(elementData, this.size);
-    //System.out.println(elementData == arr); //false
     return arr;
-    /*
-    Object[] arr = new Object[this.size];
-    for (int i = 0; i < arr.length; i++) {
-      arr[i] = elementData[i];
-    }
-    return arr;
-     */
   }
 
   @Override
   @SuppressWarnings("unchecked")
   public E[] toArray(E[] arr) {
-    if (arr.length < size) {
-      arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), this.size);
-      //return (E[]) Arrays.copyOf(this.elementData, this.size, arr.getClass());
+    if (arr.length < this.size) {
+      // 파라미터로 받은 배열이 작을 때는 새 배열을 만들어 리턴.
+      return (E[]) Arrays.copyOf(this.elementData, this.size, arr.getClass());
     }
-    System.arraycopy(
-        this.elementData, 
-        0, 
-        arr, 
-        0,
-        this.size);
-    return arr;
+    System.arraycopy(this.elementData, 0, arr, 0, this.size);
+    return arr; // 넉넉할 때는 파라미터로 받은 배열을 그대로 리턴. 
   }
 }
 
