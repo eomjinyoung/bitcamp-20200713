@@ -7,11 +7,11 @@ public class SelectStudent {
     Scanner keyInput = new Scanner(System.in);
 
     String[] names = {
-        "유아람","유지연","이건목","이성권","이승혁",
         "조은채","최진영","최희진",
-        "김하연","류승희","박민섭","신소미","오세준",
+        "권구현","김성태","김유아","김찬구","김태희",
+        "유아람","유지연","이건목","이성권","이승혁",
         "이용민","이재현","이종엽","정지은","조아진",
-        "권구현","김성태","김유아","김찬구","김태희"
+        "김하연","류승희","박민섭","신소미","오세준"
     };
 
     ArrayList<String> nameList = new ArrayList<>();
@@ -19,15 +19,17 @@ public class SelectStudent {
       nameList.add(name);
     }
 
+    int count = 0;
+    int delay = 2000;
     while (nameList.size() > 0) {
       int index = (int)(Math.random() * nameList.size());
-      for (int i = 0; i < 10; i++) {
-        System.out.print(".");
-        Thread.currentThread().sleep(1000);
-      }
+      Thread.currentThread().sleep(delay);
       String selectedName = nameList.remove(index);
-      System.out.printf("=> %s\n", selectedName);
-      keyInput.nextLine();
+      System.out.printf("%s, ", selectedName);
+      if ((++count % 11) == 0) {
+        keyInput.nextLine();
+        delay = 5000;
+      }
     }
 
     keyInput.close();
