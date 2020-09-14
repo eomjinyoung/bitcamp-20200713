@@ -119,6 +119,9 @@ public class App {
       }
 
     Prompt.close();
+
+    // 프로그램을 종료하기 전에 List 에 보관된 객체를 파일에 저장한다.
+    saveBoards();
   }
 
   static void printCommandHistory(Iterator<String> iterator) {
@@ -136,5 +139,9 @@ public class App {
     } catch (Exception e) {
       System.out.println("history 명령 처리 중 오류 발생!");
     }
+  }
+
+  public static void saveBoards() {
+    System.out.println("[게시글 저장]");
   }
 }
