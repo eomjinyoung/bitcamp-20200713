@@ -151,9 +151,10 @@ public class App {
     // 데이터를 저장할 파일의 정보
     File file = new File("./board.csv"); // 현재 폴더(.)은 프로젝트 폴더를 가리킨다.
 
+    FileWriter out = null;
     try {
       // 데이터를 파일에 출력할 때 사용할 도구
-      FileWriter out = new FileWriter(file);
+      out = new FileWriter(file);
 
       // 각각의 게시글 파일로 출력한다.
       for (Board board : boardList) {
@@ -167,12 +168,18 @@ public class App {
         out.write(record); // 번호,제목,내용,작성자,작성일,조회수 CRLF
       }
 
-      // 사용이 끝난 파일 출력 도구를 닫는다.
-      // => 이 과정에서 파일 출력 도구의 임시 메모리(버퍼)에 잔류하는 찌꺼기 데이터를 마무리로 완전히 출력한다.
-      out.close();
-
     } catch (IOException e) {
       System.out.println("파일 출력 작업 중에 오류 발생!");
+
+    } finally {
+      // 사용이 끝난 파일 출력 도구를 닫는다.
+      // => 이 과정에서 파일 출력 도구의 임시 메모리(버퍼)에 잔류하는 찌꺼기 데이터를 마무리로 완전히 출력한다.
+      try {
+        out.close();
+      } catch (Exception e) {
+        // close() 에서 오류가 발생할 때 마땅히 할 것이 없다.
+        // 그래서 그냥 무시한다.
+      }
     }
 
   }
