@@ -1,5 +1,8 @@
 package com.eomcs.pms;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -39,13 +42,14 @@ import com.eomcs.util.Prompt;
 
 public class App {
 
+  // 맵 객체에 커맨드 객체를 보관한다.
+  static List<Board> boardList = new ArrayList<>();
+
   public static void main(String[] args) {
 
     // 커맨드 객체를 저장할 맵 객체를 준비한다.
     Map<String,Command> commandMap = new HashMap<>();
 
-    // 맵 객체에 커맨드 객체를 보관한다.
-    List<Board> boardList = new ArrayList<>();
     commandMap.put("/board/add", new BoardAddCommand(boardList));
     commandMap.put("/board/list", new BoardListCommand(boardList));
     commandMap.put("/board/detail", new BoardDetailCommand(boardList));
@@ -143,5 +147,43 @@ public class App {
 
   public static void saveBoards() {
     System.out.println("[게시글 저장]");
+
+    // 데이터를 저장할 파일의 정보
+    File file = new File("./board.csv"); // 현재 폴더(.)은 프로젝트 폴더를 가리킨다.
+
+    try {
+      // 데이터를 파일에 출력할 때 사용할 도구
+      FileWriter out = new FileWriter(file);
+
+      // 각각의 게시글 파일로 출력한다.
+      for (Board board : boardList) {
+        String record = String.format("%d,%s,%s,%s,%s,%d\n", 
+            board.getNo(),
+            board.getTitle(),
+            board.getContent(),
+            board.getWriter(),
+            board.getRegisteredDate().toString(),
+            board.getViewCount());
+        out.write(record); // 번호,제목,내용,작성자,작성일,조회수 CRLF
+      }
+
+      // 사용이 끝난 파일 출력 도구를 닫는다.
+      // => 이 과정에서 파일 출력 도구의 임시 메모리(버퍼)에 잔류하는 찌꺼기 데이터를 마무리로 완전히 출력한다.
+      out.close();
+
+    } catch (IOException e) {
+      System.out.println("파일 출력 작업 중에 오류 발생!");
+    }
+
   }
 }
+
+
+
+
+
+
+
+
+
+
