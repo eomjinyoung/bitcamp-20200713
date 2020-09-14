@@ -40,5 +40,4 @@ public class TaskAddCommand implements Command {
 
     taskList.add(task);
   }
-
 }

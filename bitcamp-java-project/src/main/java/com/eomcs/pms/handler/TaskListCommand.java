@@ -41,5 +41,4 @@ public class TaskListCommand implements Command {
           task.getOwner());
     }
   }
-
 }

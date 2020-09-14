@@ -12,7 +12,6 @@ public class ProjectDetailCommand implements Command {
     this.projectList = list;
   }
 
-
   @Override
   public void execute() {
     System.out.println("[프로젝트 상세보기]");
