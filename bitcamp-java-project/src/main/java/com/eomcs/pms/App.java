@@ -174,14 +174,7 @@ public class App {
 
       // 각각의 게시글 파일로 출력한다.
       for (Board board : boardList) {
-        String record = String.format("%d,%s,%s,%s,%s,%d\n", 
-            board.getNo(),
-            board.getTitle(),
-            board.getContent(),
-            board.getWriter(),
-            board.getRegisteredDate().toString(),
-            board.getViewCount());
-        out.write(record); // 번호,제목,내용,작성자,작성일,조회수 CRLF
+        out.write(toCsvString(board)); // 번호,제목,내용,작성자,작성일,조회수 CRLF
       }
 
     } catch (IOException e) {
@@ -211,25 +204,11 @@ public class App {
 
       while (true) {
         try {
-          // 파일에서 한 줄 읽는다.
-          String record = scanner.nextLine(); // "번호,제목,내용,작성자,등록일,조회수"
+          //          String record = scanner.nextLine(); // "번호,제목,내용,작성자,등록일,조회수"
+          //          Board board = valueOfCsv(record);
+          //          boardList.add(board);
 
-          // CSV 문자열을 콤마(,)로 나눈다.
-          String[] values = record.split(",");
-
-          // 레코드 데이터를 저장할 객체를 준비
-          Board board = new Board();
-
-          // 레코드의 각 필드 값을 객체의 필드에 저장한다.
-          board.setNo(Integer.parseInt(values[0]));
-          board.setTitle(values[1]); // "20" ==> int
-          board.setContent(values[2]);
-          board.setWriter(values[3]);
-          board.setRegisteredDate(Date.valueOf(values[4])); // "yyyy-MM-dd" ==> java.sql.Date
-          board.setViewCount(Integer.parseInt(values[5]));
-
-          // 객체를 List 목록에 추가한다.
-          boardList.add(board);
+          boardList.add(valueOfCsv(scanner.nextLine()));
 
         } catch (NoSuchElementException e) {
           break;
@@ -242,6 +221,38 @@ public class App {
       try {scanner.close();} catch (Exception e) {}
       try {out.close();} catch (Exception e) {}
     }
+  }
+
+  // Board 객체를 생성하는 팩토리 메서드의 역할을 한다.
+  // => 기존 코드를 별도의 메서드로 추출한다.(리팩토링: extract method)
+  static Board valueOfCsv(String csv) {
+    // CSV 문자열을 콤마(,)로 나눈다.
+    String[] values = csv.split(",");
+
+    // 레코드 데이터를 저장할 객체를 준비
+    Board board = new Board();
+
+    // 레코드의 각 필드 값을 객체의 필드에 저장한다.
+    board.setNo(Integer.parseInt(values[0]));
+    board.setTitle(values[1]); // "20" ==> int
+    board.setContent(values[2]);
+    board.setWriter(values[3]);
+    board.setRegisteredDate(Date.valueOf(values[4])); // "yyyy-MM-dd" ==> java.sql.Date
+    board.setViewCount(Integer.parseInt(values[5]));
+
+    return board;
+  }
+
+  // Board 객체의 데이터를 CSV 문자열로 바꾸는 일을 한다.
+  // => 기존 코드를 가져와서 메서드로 정의한다.
+  static String toCsvString(Board board) {
+    return String.format("%d,%s,%s,%s,%s,%d\n", 
+        board.getNo(),
+        board.getTitle(),
+        board.getContent(),
+        board.getWriter(),
+        board.getRegisteredDate().toString(),
+        board.getViewCount());
   }
 
   static void saveMembers() {
