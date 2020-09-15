@@ -48,11 +48,19 @@ public class App {
 
   // 맵 객체에 커맨드 객체를 보관한다.
   static List<Board> boardList = new ArrayList<>();
+  static List<Member> memberList = new LinkedList<>();
+
+  // 데이터를 저장할 파일의 정보
+  static File boardFile = new File("./board.csv"); // 현재 폴더(.)은 프로젝트 폴더를 가리킨다.
+  static File memberFile = new File("./member.csv");
 
   public static void main(String[] args) {
 
     // 파일에서 데이터를 읽어 List 에 저장한다.
     loadBoards();
+    loadMembers();
+    //loadProjects();
+    //loadTasks();
 
     // 커맨드 객체를 저장할 맵 객체를 준비한다.
     Map<String,Command> commandMap = new HashMap<>();
@@ -63,7 +71,6 @@ public class App {
     commandMap.put("/board/update", new BoardUpdateCommand(boardList));
     commandMap.put("/board/delete", new BoardDeleteCommand(boardList));
 
-    List<Member> memberList = new LinkedList<>();
     MemberListCommand memberListCommand = new MemberListCommand(memberList);
     commandMap.put("/member/add", new MemberAddCommand(memberList));
     commandMap.put("/member/list", memberListCommand);
@@ -133,6 +140,9 @@ public class App {
 
     // 프로그램을 종료하기 전에 List 에 보관된 객체를 파일에 저장한다.
     saveBoards();
+    saveMembers();
+    //saveProjects();
+    //saveTasks();
   }
 
   static void printCommandHistory(Iterator<String> iterator) {
@@ -155,13 +165,10 @@ public class App {
   static void saveBoards() {
     System.out.println("[게시글 저장]");
 
-    // 데이터를 저장할 파일의 정보
-    File file = new File("./board.csv"); // 현재 폴더(.)은 프로젝트 폴더를 가리킨다.
-
     FileWriter out = null;
     try {
       // 데이터를 파일에 출력할 때 사용할 도구
-      out = new FileWriter(file);
+      out = new FileWriter(boardFile);
 
       // 각각의 게시글 파일로 출력한다.
       for (Board board : boardList) {
@@ -191,16 +198,13 @@ public class App {
   }
 
   static void loadBoards() {
-    System.out.println("[게시글 파일 로딩!]");
-
-    // 데이터를 읽어 올 파일의 정보
-    File file = new File("./board.csv"); // 현재 폴더(.)은 프로젝트 폴더를 가리킨다.
+    System.out.println("[게시글 로딩!]");
 
     FileReader out = null;
     Scanner scanner = null;
     try {
       // 파일에서 데이터를 읽을 때 사용할 도구
-      out = new FileReader(file);
+      out = new FileReader(boardFile);
       scanner = new Scanner(out); // FileReader 객체에 플러그인을 꼽는다.
 
       while (true) {
@@ -224,6 +228,72 @@ public class App {
 
           // 객체를 List 목록에 추가한다.
           boardList.add(board);
+
+        } catch (NoSuchElementException e) {
+          break;
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("파일 읽기 작업 중에 오류 발생!");
+
+    } finally {
+      try {scanner.close();} catch (Exception e) {}
+      try {out.close();} catch (Exception e) {}
+    }
+  }
+
+  static void saveMembers() {
+    System.out.println("[회원 저장]");
+
+    FileWriter out = null;
+    try {
+      out = new FileWriter(memberFile);
+
+      for (Member member : memberList) {
+        String record = String.format("%d,%s,%s,%s,%s,%s,%s\n", 
+            member.getNo(),
+            member.getName(),
+            member.getEmail(),
+            member.getPassword(),
+            member.getPhoto(),
+            member.getTel(),
+            member.getRegisteredDate().toString());
+
+        out.write(record); // 번호,이름,이메일,암호,사진,전화,가입일 CRLF
+      }
+
+    } catch (IOException e) {
+      System.out.println("파일 출력 작업 중에 오류 발생!");
+
+    } finally {
+      try {out.close();} catch (Exception e) {}
+    }
+  }
+
+  static void loadMembers() {
+    System.out.println("[회원 로딩!]");
+
+    FileReader out = null;
+    Scanner scanner = null;
+    try {
+      out = new FileReader(memberFile);
+      scanner = new Scanner(out);
+
+      while (true) {
+        try {
+          String record = scanner.nextLine(); // "번호,이름,이메일,암호,사진,전화,가입일"
+          String[] values = record.split(",");
+
+          Member member = new Member();
+          member.setNo(Integer.parseInt(values[0]));
+          member.setName(values[1]); 
+          member.setEmail(values[2]);
+          member.setPassword(values[3]);
+          member.setPhoto(values[4]);
+          member.setTel(values[5]);
+          member.setRegisteredDate(Date.valueOf(values[6])); 
+
+          memberList.add(member);
 
         } catch (NoSuchElementException e) {
           break;
