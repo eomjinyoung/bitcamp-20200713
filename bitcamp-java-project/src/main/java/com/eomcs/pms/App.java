@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -200,41 +201,40 @@ public class App {
     try {
       // 파일에서 데이터를 읽을 때 사용할 도구
       out = new FileReader(file);
-      scanner = new Scanner(out);
+      scanner = new Scanner(out); // FileReader 객체에 플러그인을 꼽는다.
 
       while (true) {
         try {
           // 파일에서 한 줄 읽는다.
-          String record = scanner.nextLine();
+          String record = scanner.nextLine(); // "번호,제목,내용,작성자,등록일,조회수"
+
+          // CSV 문자열을 콤마(,)로 나눈다.
+          String[] values = record.split(",");
+
+          // 레코드 데이터를 저장할 객체를 준비
+          Board board = new Board();
+
+          // 레코드의 각 필드 값을 객체의 필드에 저장한다.
+          board.setNo(Integer.parseInt(values[0]));
+          board.setTitle(values[1]); // "20" ==> int
+          board.setContent(values[2]);
+          board.setWriter(values[3]);
+          board.setRegisteredDate(Date.valueOf(values[4])); // "yyyy-MM-dd" ==> java.sql.Date
+          board.setViewCount(Integer.parseInt(values[5]));
+
+          // 객체를 List 목록에 추가한다.
+          boardList.add(board);
 
         } catch (NoSuchElementException e) {
           break;
         }
       }
-      // 각각의 게시글 파일로 출력한다.
-      for (Board board : boardList) {
-        String record = String.format("%d,%s,%s,%s,%s,%d\n", 
-            board.getNo(),
-            board.getTitle(),
-            board.getContent(),
-            board.getWriter(),
-            board.getRegisteredDate().toString(),
-            board.getViewCount());
-        out.write(record); // 번호,제목,내용,작성자,작성일,조회수 CRLF
-      }
-
     } catch (IOException e) {
-      System.out.println("파일 출력 작업 중에 오류 발생!");
+      System.out.println("파일 읽기 작업 중에 오류 발생!");
 
     } finally {
-      // 사용이 끝난 파일 출력 도구를 닫는다.
-      // => 이 과정에서 파일 출력 도구의 임시 메모리(버퍼)에 잔류하는 찌꺼기 데이터를 마무리로 완전히 출력한다.
-      try {
-        out.close();
-      } catch (Exception e) {
-        // close() 에서 오류가 발생할 때 마땅히 할 것이 없다.
-        // 그래서 그냥 무시한다.
-      }
+      try {scanner.close();} catch (Exception e) {}
+      try {out.close();} catch (Exception e) {}
     }
   }
 }
