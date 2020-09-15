@@ -49,18 +49,22 @@ public class App {
   // 맵 객체에 커맨드 객체를 보관한다.
   static List<Board> boardList = new ArrayList<>();
   static List<Member> memberList = new LinkedList<>();
+  static List<Project> projectList = new LinkedList<>();
+  static List<Task> taskList = new ArrayList<>();
 
   // 데이터를 저장할 파일의 정보
   static File boardFile = new File("./board.csv"); // 현재 폴더(.)은 프로젝트 폴더를 가리킨다.
   static File memberFile = new File("./member.csv");
+  static File projectFile = new File("./project.csv");
+  static File taskFile = new File("./task.csv");
 
   public static void main(String[] args) {
 
     // 파일에서 데이터를 읽어 List 에 저장한다.
     loadBoards();
     loadMembers();
-    //loadProjects();
-    //loadTasks();
+    loadProjects();
+    loadTasks();
 
     // 커맨드 객체를 저장할 맵 객체를 준비한다.
     Map<String,Command> commandMap = new HashMap<>();
@@ -78,14 +82,12 @@ public class App {
     commandMap.put("/member/update", new MemberUpdateCommand(memberList));
     commandMap.put("/member/delete", new MemberDeleteCommand(memberList));
 
-    List<Project> projectList = new LinkedList<>();
     commandMap.put("/project/add", new ProjectAddCommand(projectList, memberListCommand));
     commandMap.put("/project/list", new ProjectListCommand(projectList));
     commandMap.put("/project/detail", new ProjectDetailCommand(projectList));
     commandMap.put("/project/update", new ProjectUpdateCommand(projectList, memberListCommand));
     commandMap.put("/project/delete", new ProjectDeleteCommand(projectList));
 
-    List<Task> taskList = new ArrayList<>();
     commandMap.put("/task/add", new TaskAddCommand(taskList, memberListCommand));
     commandMap.put("/task/list", new TaskListCommand(taskList));
     commandMap.put("/task/detail", new TaskDetailCommand(taskList));
@@ -141,8 +143,8 @@ public class App {
     // 프로그램을 종료하기 전에 List 에 보관된 객체를 파일에 저장한다.
     saveBoards();
     saveMembers();
-    //saveProjects();
-    //saveTasks();
+    saveProjects();
+    saveTasks();
   }
 
   static void printCommandHistory(Iterator<String> iterator) {
@@ -294,6 +296,136 @@ public class App {
           member.setRegisteredDate(Date.valueOf(values[6])); 
 
           memberList.add(member);
+
+        } catch (NoSuchElementException e) {
+          break;
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("파일 읽기 작업 중에 오류 발생!");
+
+    } finally {
+      try {scanner.close();} catch (Exception e) {}
+      try {out.close();} catch (Exception e) {}
+    }
+  }
+
+  static void saveProjects() {
+    System.out.println("[프로젝트 저장]");
+
+    FileWriter out = null;
+    try {
+      out = new FileWriter(projectFile);
+
+      for (Project project : projectList) {
+        String record = String.format("%d,%s,%s,%s,%s,%s,%s\n", 
+            project.getNo(),
+            project.getTitle(),
+            project.getContent(),
+            project.getStartDate().toString(),
+            project.getEndDate().toString(),
+            project.getOwner(),
+            project.getMembers()
+            );
+
+        out.write(record); // 번호,프로젝트명,내용,시작일,종료일,소유자,멤버들 CRLF
+      }
+
+    } catch (IOException e) {
+      System.out.println("파일 출력 작업 중에 오류 발생!");
+
+    } finally {
+      try {out.close();} catch (Exception e) {}
+    }
+  }
+
+  static void loadProjects() {
+    System.out.println("[프로젝트 로딩!]");
+
+    FileReader out = null;
+    Scanner scanner = null;
+    try {
+      out = new FileReader(projectFile);
+      scanner = new Scanner(out);
+
+      while (true) {
+        try {
+          String record = scanner.nextLine(); // "번호,프로젝트명,내용,시작일,종료일,소유자,멤버들"
+          String[] values = record.split(",");
+
+          Project project = new Project();
+          project.setNo(Integer.parseInt(values[0]));
+          project.setTitle(values[1]); 
+          project.setContent(values[2]);
+          project.setStartDate(Date.valueOf(values[3]));
+          project.setEndDate(Date.valueOf(values[4]));
+          project.setOwner(values[5]);
+          project.setMembers(values[6]); 
+
+          projectList.add(project);
+
+        } catch (NoSuchElementException e) {
+          break;
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("파일 읽기 작업 중에 오류 발생!");
+
+    } finally {
+      try {scanner.close();} catch (Exception e) {}
+      try {out.close();} catch (Exception e) {}
+    }
+  }
+
+  static void saveTasks() {
+    System.out.println("[작업 저장]");
+
+    FileWriter out = null;
+    try {
+      out = new FileWriter(taskFile);
+
+      for (Task task : taskList) {
+        String record = String.format("%d,%s,%s,%d,%s\n", 
+            task.getNo(),
+            task.getContent(),
+            task.getDeadline().toString(),
+            task.getStatus(),
+            task.getOwner()
+            );
+
+        out.write(record); // 번호,작업내용,마감일,상태,담당자 CRLF
+      }
+
+    } catch (IOException e) {
+      System.out.println("파일 출력 작업 중에 오류 발생!");
+
+    } finally {
+      try {out.close();} catch (Exception e) {}
+    }
+  }
+
+  static void loadTasks() {
+    System.out.println("[작업 로딩!]");
+
+    FileReader out = null;
+    Scanner scanner = null;
+    try {
+      out = new FileReader(taskFile);
+      scanner = new Scanner(out);
+
+      while (true) {
+        try {
+          String record = scanner.nextLine(); // "번호,작업내용,마감일,상태,담당자"
+          String[] values = record.split(",");
+
+          Task task = new Task();
+          task.setNo(Integer.parseInt(values[0]));
+          task.setContent(values[1]); 
+          task.setDeadline(Date.valueOf(values[2]));
+          task.setStatus(Integer.parseInt(values[3]));
+          task.setOwner(values[4]);
+
+          taskList.add(task);
 
         } catch (NoSuchElementException e) {
           break;
