@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -231,16 +230,7 @@ public class App {
       out = new FileWriter(memberFile);
 
       for (Member member : memberList) {
-        String record = String.format("%d,%s,%s,%s,%s,%s,%s\n", 
-            member.getNo(),
-            member.getName(),
-            member.getEmail(),
-            member.getPassword(),
-            member.getPhoto(),
-            member.getTel(),
-            member.getRegisteredDate().toString());
-
-        out.write(record); // 번호,이름,이메일,암호,사진,전화,가입일 CRLF
+        out.write(member.toCsvString()); // 번호,이름,이메일,암호,사진,전화,가입일 CRLF
       }
 
     } catch (IOException e) {
@@ -262,19 +252,7 @@ public class App {
 
       while (true) {
         try {
-          String record = scanner.nextLine(); // "번호,이름,이메일,암호,사진,전화,가입일"
-          String[] values = record.split(",");
-
-          Member member = new Member();
-          member.setNo(Integer.parseInt(values[0]));
-          member.setName(values[1]); 
-          member.setEmail(values[2]);
-          member.setPassword(values[3]);
-          member.setPhoto(values[4]);
-          member.setTel(values[5]);
-          member.setRegisteredDate(Date.valueOf(values[6])); 
-
-          memberList.add(member);
+          memberList.add(Member.valueOfCsv(scanner.nextLine()));
 
         } catch (NoSuchElementException e) {
           break;
@@ -297,17 +275,7 @@ public class App {
       out = new FileWriter(projectFile);
 
       for (Project project : projectList) {
-        String record = String.format("%d,%s,%s,%s,%s,%s,%s\n", 
-            project.getNo(),
-            project.getTitle(),
-            project.getContent(),
-            project.getStartDate().toString(),
-            project.getEndDate().toString(),
-            project.getOwner(),
-            project.getMembers()
-            );
-
-        out.write(record); // 번호,프로젝트명,내용,시작일,종료일,소유자,멤버들 CRLF
+        out.write(project.toCsvString());  // 번호,프로젝트명,내용,시작일,종료일,소유자,멤버들 CRLF
       }
 
     } catch (IOException e) {
@@ -329,19 +297,7 @@ public class App {
 
       while (true) {
         try {
-          String record = scanner.nextLine(); // "번호,프로젝트명,내용,시작일,종료일,소유자,멤버들"
-          String[] values = record.split(",");
-
-          Project project = new Project();
-          project.setNo(Integer.parseInt(values[0]));
-          project.setTitle(values[1]); 
-          project.setContent(values[2]);
-          project.setStartDate(Date.valueOf(values[3]));
-          project.setEndDate(Date.valueOf(values[4]));
-          project.setOwner(values[5]);
-          project.setMembers(values[6]); 
-
-          projectList.add(project);
+          projectList.add(Project.valueOfCsv(scanner.nextLine()));
 
         } catch (NoSuchElementException e) {
           break;
@@ -364,15 +320,7 @@ public class App {
       out = new FileWriter(taskFile);
 
       for (Task task : taskList) {
-        String record = String.format("%d,%s,%s,%d,%s\n", 
-            task.getNo(),
-            task.getContent(),
-            task.getDeadline().toString(),
-            task.getStatus(),
-            task.getOwner()
-            );
-
-        out.write(record); // 번호,작업내용,마감일,상태,담당자 CRLF
+        out.write(task.toCsvString());  // 번호,작업내용,마감일,상태,담당자 CRLF
       }
 
     } catch (IOException e) {
@@ -394,17 +342,7 @@ public class App {
 
       while (true) {
         try {
-          String record = scanner.nextLine(); // "번호,작업내용,마감일,상태,담당자"
-          String[] values = record.split(",");
-
-          Task task = new Task();
-          task.setNo(Integer.parseInt(values[0]));
-          task.setContent(values[1]); 
-          task.setDeadline(Date.valueOf(values[2]));
-          task.setStatus(Integer.parseInt(values[3]));
-          task.setOwner(values[4]);
-
-          taskList.add(task);
+          taskList.add(Task.valueOfCsv(scanner.nextLine()));
 
         } catch (NoSuchElementException e) {
           break;
