@@ -186,7 +186,7 @@ public class App {
 
     } catch (IOException e) {
       System.out.println("파일 출력 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       // 사용이 끝난 파일 출력 도구를 닫는다.
       // => 이 과정에서 파일 출력 도구의 임시 메모리(버퍼)에 잔류하는 찌꺼기 데이터를 마무리로 완전히 출력한다.
@@ -237,7 +237,7 @@ public class App {
       }
     } catch (IOException e) {
       System.out.println("파일 읽기 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {scanner.close();} catch (Exception e) {}
       try {out.close();} catch (Exception e) {}
@@ -266,7 +266,7 @@ public class App {
 
     } catch (IOException e) {
       System.out.println("파일 출력 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {out.close();} catch (Exception e) {}
     }
@@ -303,7 +303,7 @@ public class App {
       }
     } catch (IOException e) {
       System.out.println("파일 읽기 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {scanner.close();} catch (Exception e) {}
       try {out.close();} catch (Exception e) {}
@@ -333,7 +333,7 @@ public class App {
 
     } catch (IOException e) {
       System.out.println("파일 출력 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {out.close();} catch (Exception e) {}
     }
@@ -370,7 +370,7 @@ public class App {
       }
     } catch (IOException e) {
       System.out.println("파일 읽기 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {scanner.close();} catch (Exception e) {}
       try {out.close();} catch (Exception e) {}
@@ -398,7 +398,7 @@ public class App {
 
     } catch (IOException e) {
       System.out.println("파일 출력 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {out.close();} catch (Exception e) {}
     }
@@ -433,7 +433,7 @@ public class App {
       }
     } catch (IOException e) {
       System.out.println("파일 읽기 작업 중에 오류 발생!");
-
+      e.printStackTrace();
     } finally {
       try {scanner.close();} catch (Exception e) {}
       try {out.close();} catch (Exception e) {}
