@@ -15,13 +15,6 @@ public class Exam610x {
     // 8) 필터를 익명 클래스로 변경하라.
     // 9) 익명 클래스를 파라미터 넣는 곳에 직접 위치시켜라.
     // 10) 익명 클래스를 람다로 변경하라.
-    File file = new File(".");
-    File[] files = file.listFiles(f -> f.isFile() && f.getName().endsWith(".java"));
-    for (File f : files) {
-      System.out.printf("%s %10s %s\n",
-          f.isDirectory() ? "d" : "-",
-              f.length() > 0 ? f.length() : "",
-                  f.getName());
-    }
+
   }
 }
