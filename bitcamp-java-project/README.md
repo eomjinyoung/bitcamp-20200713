@@ -1,80 +1,82 @@
-# 30-b. 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : 리팩터링 I
+# 30-c. 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : 리팩터링 II
 
 이번 훈련에서는,
-- 좀 더 유지보수하기 좋은 구조로 소스 코드를 **리팩터링** 해보자.
-- 객체 생성에 **팩토리 메서드(factory method) 패턴** 을 응용해보자.
+- **인터페이스** 를 활용하여 코드를 통합하는 것을 연습할 것이다.
+- **제네릭** 을 활용하여 범용 메서드를 만드는 방법을 연습할 것이다.
+- **리플랙션 API** 를 활용하여 클래스의 특정 메서드를 찾아내어 호출하는 것을 연습할 것이다.
 
-**리팩터링(refactoring)** 은, (마틴 파울러의 '리팩터링'에서 발췌)
-- 소프트웨어를 보다 쉽게 이해할 수 있고, 적은 비용으로 수정할 수 있도록
-  겉으로 보이는 동작의 변화 없이 내부 구조를 변경하는 것.
-- 중복된 코드를 제거하여 설계(design)를 개선시킨다.
-- 코드를 더 이해하기 쉽게 만든다.
-- 버그를 찾기 쉽게 해준다.
-- 프로그램을 빨리 작성하도록 도와준다.
+**인터페이스(interface)** 는,
+- 객체의 사용 규칙을 정의하는 문법이다.
+- 즉 객체에 대해 메서드 호출 규칙을 정의한다.
 
-**리팩터링** 을 해야할 때,
-- 비슷한 코드를 중복해서 작성할 때
-- 기능을 추가할 때
-- 버그를 수정할 때
-- 코드 리뷰(code review)를 수행할 때
+**인터페이스** 의 이점은,
+- 객체를 사용하는 측(client)의 코드 작성과 피사용측 코드 작성을 분리할 수 있다.
+- 즉 코드를 작성하는 개발자들이 서로 영향을 끼치지 않고 프로그래밍을 할 수 있다.  
+- 특정 클래스에 종속되지 않기 때문에 구현이 더 자유롭고 객체를 대체하기가 더 쉽다.
 
-**팩토리 메서드(factory method) 패턴** 은,
-- new 명령을 사용하여 객체를 생성하기 보다는, 메서드를 통해 객체를 리턴 받는다.
-- 인터페이스로 객체 생성 규칙을 정의하여 프로그래밍의 일관성을 제공한다.
-- 또한 객체 생성의 책임을 인터페이스 구현체에게 떠넘긴다.
+**리플랙션(reflection) API** 는
+- 클래스나 인터페이스의 내부 멤버를 살펴 볼 때 사용한다.
+- 수퍼 클래스나 구현한 인터페이스의 정보도 알아 낼 수 있다.
+- 클래스 정보를 가지고 인스턴스를 생성하거나 메서드를 호출할 수 있다.
+- 프레임워크를 만들 때 많이 사용한다.
 
 
 ## 훈련 목표
-
-- *메서드 추출(extract method)* 리팩토링 기법을 연습한다.
-- *메서드 이동(move method)* 리팩토링 기법을 연습한다.
-- *팩토리 메서드(factory method) 패턴* 의 적용 방법을 연습한다.
+- *인터페이스* 의 활용을 연습한다.
+- *제네릭* 을 메서드에 적용하는 것을 연습한다.
+- *리플랙션 API* 를 사용하여 메서드를 찾아서 호출하는 방법을 연습한다.
 
 
 ## 훈련 내용
+- CSV 문자열을 리턴하는 메서드를 인터페이스의 규칙을 정의한다.
+- 인터페이스를 활용하여 파일 출력 코드를 통합한다.
+- 리플랫션 API를 활용하여 파일의 데이터를 로딩하는 메서드를 통합한다.
 
-- CSV 형식의 문자열을 다루는 코드를 valueOfCsv(), toCsvString() 메서드로 추출하여,
-  그 값을 다루는 도메인 클래스에 둔다.
-- 인터페이스를 이용하여 객체 생성과 관련된 메서드를 규칙으로 정의하고,
-  그 규칙에 따라 valueOfCsv()와 toCsvString() 메서드를 구현한다.
 
 ## 실습
 
+### 1단계 - 객체에서 CSV 형식의 문자열을 뽑는 메서드를 규칙으로 정의한다.
 
-### 1단계 - 코드에서 데이터를 CSV 형식의 문자열로 다루는 부분을 메서드로 추출하여 도메인 클래스에 정의한다.
-
-- Board 클래스
-  - CSV 문자열을 가지고 Board 객체를 생성하는 valueOfCsv() 를 추가한다.
-  - Board 객체의 필드 값을 CSV 문자열을 리턴하는 toCsvString() 를 추가한다.
-- Member 클래스
-  - CSV 문자열을 가지고 Member 객체를 생성하는 valueOfCsv() 를 추가한다.
-  - Member 객체의 필드 값을 CSV 문자열을 리턴하는 toCsvString() 를 추가한다.
-- Project 클래스
-  - CSV 문자열을 가지고 Project 객체를 생성하는 valueOfCsv() 를 추가한다.
-  - Project 객체의 필드 값을 CSV 문자열을 리턴하는 toCsvString() 를 추가한다.
-- Task 클래스
-  - CSV 문자열을 가지고 Task 객체를 생성하는 valueOfCsv() 를 추가한다.
-  - Task 객체의 필드 값을 CSV 문자열을 리턴하는 toCsvString() 를 추가한다.
-- App 클래스
-  - loadBoards() 를 변경한다.
-  - saveBoards() 를 변경한다.
-  - loadMembers() 를 변경한다.
-  - saveMembers() 를 변경한다.
-  - loadProjects() 를 변경한다.
-  - saveProjects() 를 변경한다.
-  - loadTasks() 를 변경한다.
-  - saveTasks() 를 변경한다.
+- com.eomcs.util.CsvData 인터페이스 생성
+  - toCsvString() 메서드를 규칙을 정의한다.
 
 #### 작업 파일
+- com.eomcs.util.CsvData 생성
 
+
+### 2단계 - 도메인 클래스는 CsvData 인터페이스를 구현한다.
+
+- Board, Member, Project, Task 변경
+  - CsvData 인터페이스의 구현체로 선언한다.
+
+#### 작업 파일
 - com.eomcs.pms.domain.Board 변경
 - com.eomcs.pms.domain.Member 변경
 - com.eomcs.pms.domain.Project 변경
 - com.eomcs.pms.domain.Task 변경
+
+### 3단계 - Board, Member, Project, Task 의 파일 저장 메서드를 통합한다.
+
+- App 변경
+  - saveBoards(), saveMembers(), saveProjects(), saveTasks() 메서드를
+    saveObjects() 메서드로 통합한다.
+
+#### 작업 파일
+- com.eomcs.pms.App 변경
+
+
+### 4단계 - 파일의 데이터를 로딩하는 메서드를 통합한다.
+
+- App 변경
+  - loadBoards(), loadMembers(), loadProjects(), loadTasks() 메서드를
+    loadObjects() 메서드로 통합한다.
+
+#### 작업 파일
 - com.eomcs.pms.App 변경
 
 
 ## 실습 결과
+- src/main/java/com/eomcs/util/CsvData.java 생성
 - src/main/java/com/eomcs/pms/domain/Board.java 변경
 - src/main/java/com/eomcs/pms/domain/Member.java 변경
 - src/main/java/com/eomcs/pms/domain/Project.java 변경
