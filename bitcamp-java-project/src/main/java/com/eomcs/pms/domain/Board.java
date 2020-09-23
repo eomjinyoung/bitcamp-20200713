@@ -1,9 +1,8 @@
 package com.eomcs.pms.domain;
 
 import java.sql.Date;
-import com.eomcs.util.CsvObject;
 
-public class Board implements CsvObject {
+public class Board {
   private int no;
   private String title;
   private String content;
@@ -48,26 +47,5 @@ public class Board implements CsvObject {
     this.viewCount = viewCount;
   }
 
-  public Board(String csv) {
-    String[] data = csv.split(",");
-
-    this.setNo(Integer.parseInt(data[0]));
-    this.setTitle(data[1]);
-    this.setContent(data[2]);
-    this.setWriter(data[3]);
-    this.setRegisteredDate(Date.valueOf(data[4]));
-    this.setViewCount(Integer.parseInt(data[5]));
-  }
-
-  @Override
-  public String toCsvString() {
-    return String.format("%d,%s,%s,%s,%s,%d\n", 
-        this.getNo(),
-        this.getTitle(),
-        this.getContent(),
-        this.getWriter(),
-        this.getRegisteredDate(),
-        this.getViewCount());
-  }
 
 }

@@ -526,3 +526,12 @@ macOS 개발 환경 구축하기
 
 - 파일 입출력
   - com.eomcs.io.ex09.* ~ 패키지 예제(계속)
+
+## 46일차(2020-09-23,수)
+
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 30-a 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : FileInputStream/FileOutputStream
+  - 30-b 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : DataInputStream/DataOutputStream
+  - 30-c 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : BufferedInputStream/BufferedOutputStream
+  - 30-d 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : ObjectInputStream/ObjectOutputStream
+  - 30-e 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : 리팩터링

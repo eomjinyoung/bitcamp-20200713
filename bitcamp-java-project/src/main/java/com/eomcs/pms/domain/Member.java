@@ -1,9 +1,8 @@
 package com.eomcs.pms.domain;
 
 import java.sql.Date;
-import com.eomcs.util.CsvObject;
 
-public class Member implements CsvObject {
+public class Member {
   private int no;
   private String name;
   private String email;
@@ -55,27 +54,5 @@ public class Member implements CsvObject {
     this.registeredDate = registeredDate;
   }
 
-  public Member(String csv) {
-    String[] data = csv.split(",");
 
-    this.setNo(Integer.parseInt(data[0]));
-    this.setName(data[1]);
-    this.setEmail(data[2]);
-    this.setPassword(data[3]);
-    this.setPhoto(data[4]);
-    this.setTel(data[5]);
-    this.setRegisteredDate(Date.valueOf(data[6]));
-  }
-
-  @Override
-  public String toCsvString() {
-    return String.format("%d,%s,%s,%s,%s,%s,%s\n", 
-        this.getNo(),
-        this.getName(),
-        this.getEmail(),
-        this.getPassword(),
-        this.getPhoto(),
-        this.getTel(),
-        this.getRegisteredDate());
-  }
 }
