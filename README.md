@@ -535,3 +535,11 @@ macOS 개발 환경 구축하기
   - 30-c 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : BufferedInputStream/BufferedOutputStream
   - 30-d 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : ObjectInputStream/ObjectOutputStream
   - 30-e 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 : 리팩터링
+
+## 47일차(2020-09-24,목)
+
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 31-a 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 II : FileReader/FileWriter + CSV 파일 포맷
+  - 31-b 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 II : BufferedReader/BufferedWriter
+  - 31-c 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 II : 리팩터링 I
+  - 31-d 버전 수행 : 파일 입출력 API를 활용하여 데이터를 읽고 쓰기 II : 리팩터링 II
