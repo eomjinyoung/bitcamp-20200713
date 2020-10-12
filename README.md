@@ -587,3 +587,12 @@ macOS 개발 환경 구축하기
   - com.eomcs.concurrent 패키지 예제(계속)
 - 과제
   - UI 프로토타입 작성하기
+
+## 55일차(2020-10-12,월)
+
+- 디자인패턴: Observer 패턴
+  - com.eomcs.design_pattern.observer 패키지 예제
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 33 버전 수행 : `Observer` 디자인 패턴을 적용하기
+- 과제
+  - UI 프로토타입 작성하기

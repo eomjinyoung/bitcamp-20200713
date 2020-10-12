@@ -2,6 +2,8 @@ package com.eomcs.pms.domain;
 
 import java.sql.Date;
 
+// Board 클래스는 더이상 CsvObject를 구현할 필요가 없다.
+//
 public class Board {
   private int no;
   private String title;
@@ -46,6 +48,10 @@ public class Board {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-
-
 }
+
+
+
+
+
+
