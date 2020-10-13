@@ -4,6 +4,15 @@
 
 2020-07-13 ~ 2020-12-21
 
+## 교육 자료
+- github.com
+  - https://github.com/eomjinyoung/bitcamp-20200713.git (비트캠프 연습 저장소)
+  - https://github.com/eomcs/eomcs-java-basic.git (자바 기초)
+  - https://github.com/eomcs/eomcs-java-project-2020.git (자바 프로젝트)
+- 칠판 필기
+  - bitcamp-20200713/note-.pdf (칠판 필기)
+  - https://1drv.ms/u/s!AgmhgidPG32dg-E3BWScH-4X85tkQg (MS-OneNote 칠판 필기)
+
 ## 교육 내용
 
 ### 1일차(2020-07-13,월)
@@ -589,6 +598,13 @@ macOS 개발 환경 구축하기
   - UI 프로토타입 작성하기
 
 ## 55일차(2020-10-12,월)
+
+- 디자인패턴: Observer 패턴
+  - com.eomcs.design_pattern.observer 패키지 예제
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 33 버전 수행 : `Observer` 디자인 패턴을 적용하기
+
+## 56일차(2020-10-13,화)
 
 - 디자인패턴: Observer 패턴
   - com.eomcs.design_pattern.observer 패키지 예제
