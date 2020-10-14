@@ -602,13 +602,23 @@ macOS 개발 환경 구축하기
 - 디자인패턴: Observer 패턴
   - com.eomcs.design_pattern.observer 패키지 예제
 - 예제 프로젝트 수행(bitcamp-java-project)
-  - 33 버전 수행 : `Observer` 디자인 패턴을 적용하기
+  - 33-a 버전 수행 : `Observer` 디자인 패턴을 적용하기
 
 ## 56일차(2020-10-13,화)
 
-- 디자인패턴: Observer 패턴
-  - com.eomcs.design_pattern.observer 패키지 예제
 - 예제 프로젝트 수행(bitcamp-java-project)
-  - 33 버전 수행 : `Observer` 디자인 패턴을 적용하기
+  - 33-b 버전 수행 : `Observer` 객체를 통해 데이터를 로딩하고 저장하기
+  - 34-a 버전 수행 : 네트워크 API를 활용하여 C/S 구조로 전환하기 : 클라이언트/서버 프로젝트 준비
+  - 34-b 버전 수행 : 네트워크 API를 활용하여 C/S 구조로 전환하기 : 간단한 메시지 송수신
 - 과제
   - UI 프로토타입 작성하기
+- 평가
+  - 응용S/W기초기술활용
+  - 프로그래밍언어활용
+
+## 57일차(2020-10-14,수)
+
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 34-c ~ g 버전 수행 : 네트워크 API를 활용하여 C/S 구조로 전환하기
+- 과제
+  - UI 프로토타입 작성하기(계속)
