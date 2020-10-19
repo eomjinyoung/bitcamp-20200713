@@ -633,14 +633,21 @@ macOS 개발 환경 구축하기
 
 ## 59일차(2020-10-16,금)
 
-- 예제 프로젝트 수행(bitcamp-java-project)
-  - 36 버전 수행 : 스레드풀을 이용하여 스레드를 재사용하기
+- 디자인 패턴 : Flyweight 패턴
+  - com.eomcs.design_pattern.flyweight 패키지 예제
+- 스레드 : 스레드풀
+  - com.eomcs.concurrent.ex6.Exam0210.java
 - 과제
   - UI 프로토타입 발표
+- Use-case 모델링
+  - Actor 식별 방법 및 표기법
 
 ## 60일차(2020-10-19,월)
 
-- 예제 프로젝트 수행(bitcamp-java-project)
-  - 36 버전 수행 : 스레드풀을 이용하여 스레드를 재사용하기
+- Use-case 모델링(계속)
+  - Use-case 식별 방법 및 표기법
+  - Use-case 모델 작성법
 - 과제
   - 요구사항분석 및 설계, UI 디자인 수행
+- 스레드 : 자바에서 제공한 스레드풀 프레임워크 사용하기
+  - com.eomcs.concurrent.ex7 패키지 예제
