@@ -685,3 +685,10 @@ macOS 개발 환경 구축하기
 - SQL
   - DDL(Data Definition Lanugage)(계속)
   - DML(Data Manipulation Language)
+
+## 66일차(2020-10-27,화)
+
+- SQL
+  - DQL(Data Query Language)
+- 프로젝트 팀 구성
+  - 4 ~ 5 인으로 구성
