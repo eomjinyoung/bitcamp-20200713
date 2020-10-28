@@ -698,6 +698,9 @@ macOS 개발 환경 구축하기
 - SQL
   - JOIN(cross, natural, inner, outer)
   - sub-query
+- JDBC 프로그래밍
+  - JDBC API 개요
+  - com.eomcs.jdbc.ex1 패키지 예제
 - 프로젝트 주제 선정
   - 팀 별 프로젝트 주제 선정(최소 2개)
   - 현황 및 문제점, 해결 방안 및 이점, 주요 기능 소개
