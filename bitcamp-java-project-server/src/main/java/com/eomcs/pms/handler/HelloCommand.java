@@ -1,10 +1,13 @@
 package com.eomcs.pms.handler;
 
-// Command 규칙에 따라 클래스를 정의한다. 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
+// Command 규칙에 따라 클래스를 정의한다.
 public class HelloCommand implements Command {
 
   @Override
-  public void execute() {
-    System.out.println("안녕하세요!");
+  public void execute(PrintWriter out, BufferedReader in) {
+    out.println("안녕하세요!");
   }
 }
