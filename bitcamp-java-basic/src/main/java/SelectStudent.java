@@ -23,7 +23,7 @@ public class SelectStudent {
     int delay = 2000;
     while (nameList.size() > 0) {
       int index = (int)(Math.random() * nameList.size());
-      Thread.currentThread().sleep(delay);
+      Thread.sleep(delay);
       String selectedName = nameList.remove(index);
       System.out.printf("%s, ", selectedName);
       if ((++count % 11) == 0) {
