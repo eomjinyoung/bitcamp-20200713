@@ -11,10 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import com.eomcs.context.ApplicationContextListener;
-import com.eomcs.pms.domain.Board;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.pms.domain.Project;
-import com.eomcs.pms.domain.Task;
 import com.eomcs.pms.handler.BoardAddCommand;
 import com.eomcs.pms.handler.BoardDeleteCommand;
 import com.eomcs.pms.handler.BoardDetailCommand;
@@ -38,7 +34,6 @@ import com.eomcs.pms.handler.TaskDetailCommand;
 import com.eomcs.pms.handler.TaskListCommand;
 import com.eomcs.pms.handler.TaskUpdateCommand;
 import com.eomcs.pms.listener.AppInitListener;
-import com.eomcs.pms.listener.DataHandlerListener;
 import com.eomcs.util.Prompt;
 
 public class App {
@@ -87,48 +82,40 @@ public class App {
 
     // 옵저버 등록
     app.addApplicationContextListener(new AppInitListener());
-    app.addApplicationContextListener(new DataHandlerListener());
 
     app.service();
   }
 
-  @SuppressWarnings("unchecked")
   public void service() throws Exception {
 
     notifyApplicationContextListenerOnServiceStarted();
 
-    // 옵저버가 작업한 결과를 맵에서 꺼낸다.
-    List<Board> boardList = (List<Board>) context.get("boardList");
-    List<Member> memberList = (List<Member>) context.get("memberList");
-    List<Project> projectList = (List<Project>) context.get("projectList");
-    List<Task> taskList = (List<Task>) context.get("taskList");
-
     Map<String,Command> commandMap = new HashMap<>();
 
-    commandMap.put("/board/add", new BoardAddCommand(boardList));
-    commandMap.put("/board/list", new BoardListCommand(boardList));
-    commandMap.put("/board/detail", new BoardDetailCommand(boardList));
-    commandMap.put("/board/update", new BoardUpdateCommand(boardList));
-    commandMap.put("/board/delete", new BoardDeleteCommand(boardList));
+    commandMap.put("/board/add", new BoardAddCommand());
+    commandMap.put("/board/list", new BoardListCommand());
+    commandMap.put("/board/detail", new BoardDetailCommand());
+    commandMap.put("/board/update", new BoardUpdateCommand());
+    commandMap.put("/board/delete", new BoardDeleteCommand());
 
-    MemberListCommand memberListCommand = new MemberListCommand(memberList);
-    commandMap.put("/member/add", new MemberAddCommand(memberList));
+    MemberListCommand memberListCommand = new MemberListCommand();
+    commandMap.put("/member/add", new MemberAddCommand());
     commandMap.put("/member/list", memberListCommand);
-    commandMap.put("/member/detail", new MemberDetailCommand(memberList));
-    commandMap.put("/member/update", new MemberUpdateCommand(memberList));
-    commandMap.put("/member/delete", new MemberDeleteCommand(memberList));
+    commandMap.put("/member/detail", new MemberDetailCommand());
+    commandMap.put("/member/update", new MemberUpdateCommand());
+    commandMap.put("/member/delete", new MemberDeleteCommand());
 
-    commandMap.put("/project/add", new ProjectAddCommand(projectList, memberListCommand));
-    commandMap.put("/project/list", new ProjectListCommand(projectList));
-    commandMap.put("/project/detail", new ProjectDetailCommand(projectList));
-    commandMap.put("/project/update", new ProjectUpdateCommand(projectList, memberListCommand));
-    commandMap.put("/project/delete", new ProjectDeleteCommand(projectList));
+    commandMap.put("/project/add", new ProjectAddCommand(memberListCommand));
+    commandMap.put("/project/list", new ProjectListCommand());
+    commandMap.put("/project/detail", new ProjectDetailCommand());
+    commandMap.put("/project/update", new ProjectUpdateCommand(memberListCommand));
+    commandMap.put("/project/delete", new ProjectDeleteCommand());
 
-    commandMap.put("/task/add", new TaskAddCommand(taskList, memberListCommand));
-    commandMap.put("/task/list", new TaskListCommand(taskList));
-    commandMap.put("/task/detail", new TaskDetailCommand(taskList));
-    commandMap.put("/task/update", new TaskUpdateCommand(taskList, memberListCommand));
-    commandMap.put("/task/delete", new TaskDeleteCommand(taskList));
+    commandMap.put("/task/add", new TaskAddCommand(memberListCommand));
+    commandMap.put("/task/list", new TaskListCommand());
+    commandMap.put("/task/detail", new TaskDetailCommand());
+    commandMap.put("/task/update", new TaskUpdateCommand(memberListCommand));
+    commandMap.put("/task/delete", new TaskDeleteCommand());
 
     commandMap.put("/hello", new HelloCommand());
 

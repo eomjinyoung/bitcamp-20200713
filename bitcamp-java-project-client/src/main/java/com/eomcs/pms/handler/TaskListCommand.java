@@ -1,44 +1,49 @@
 package com.eomcs.pms.handler;
 
-import java.util.Iterator;
-import java.util.List;
-import com.eomcs.pms.domain.Task;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class TaskListCommand implements Command {
-
-  List<Task> taskList;
-
-  public TaskListCommand(List<Task> list) {
-    this.taskList = list;
-  }
 
   @Override
   public void execute() {
     System.out.println("[작업 목록]");
 
-    // 전체 목록을 조회할 때 `Iterator` 객체를 사용한다.
-    // 만약 목록의 일부만 조회하면다면 인덱스를 직접 다루는 이전 방식을 사용해야 한다.
-    Iterator<Task> iterator = taskList.iterator();
+    try (Connection con = DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/studydb?user=study&password=1111");
+        PreparedStatement stmt = con.prepareStatement(
+            "select no, content, deadline, owner, status"
+                + " from pms_task"
+                + " order by deadline asc")) {
 
-    while (iterator.hasNext()) {
-      Task task = iterator.next();
-      String stateLabel = null;
-      switch (task.getStatus()) {
-        case 1:
-          stateLabel = "진행중";
-          break;
-        case 2:
-          stateLabel = "완료";
-          break;
-        default:
-          stateLabel = "신규";
+      try (ResultSet rs = stmt.executeQuery()) {
+        System.out.println("번호, 작업내용, 마감일, 작업자, 상태");
+
+        while (rs.next()) {
+          String stateLabel = null;
+          switch (rs.getInt("status")) {
+            case 1:
+              stateLabel = "진행중";
+              break;
+            case 2:
+              stateLabel = "완료";
+              break;
+            default:
+              stateLabel = "신규";
+          }
+          System.out.printf("%d, %s, %s, %s, %s\n",
+              rs.getInt("no"),
+              rs.getString("content"),
+              rs.getDate("deadline"),
+              rs.getString("owner"),
+              stateLabel);
+        }
       }
-      System.out.printf("%d, %s, %s, %s, %s\n",
-          task.getNo(),
-          task.getContent(),
-          task.getDeadline(),
-          stateLabel,
-          task.getOwner());
+    } catch (Exception e) {
+      System.out.println("작업 목록 조회 중 오류 발생!");
+      e.printStackTrace();
     }
   }
 }
