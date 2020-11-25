@@ -858,8 +858,15 @@ macOS 개발 환경 구축하기
 
 - 서블릿 프로그래밍
   - com.eomcs.web.ex01 예제 실습
+  - com.eomcs.web.ex02 예제 실습
+  - com.eomcs.web.ex03 예제 실습
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 44 버전 수행 : 애플리케이션 서버 아키텍처로 전환하기(계속)
 
+## 87일차(2020-11-25,수)
 
+- HTML 태그 사용법
+  - src/main/webapp/temp/ch2 예제 실습
 
 
 
