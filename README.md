@@ -927,6 +927,16 @@ macOS 개발 환경 구축하기
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 45-b 버전 수행 : MVC 아키텍처로 전환하기 : EL 및 JSTL 활용하기
 
+## 96일차(2020-12-08,화)
+
+- CSS 활용법
+  - src/main/webapp/css/* 예제 실습
+
+## 97일차(2020-12-09,수)
+
+- CSS 활용법
+  - src/main/webapp/css/* 예제 실습(계속)
+  
 ## xx일차(2020-11-19,목)
 
 - 리플랙션 API 사용법
