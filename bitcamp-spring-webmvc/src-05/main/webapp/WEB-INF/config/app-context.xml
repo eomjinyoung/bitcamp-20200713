@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+  
+  <context:component-scan base-package="bitcamp"/>
+  
+<!--
+  ContextLoaderListener? 
+      - DispatcherServlet 클래스와 달리 
+        ContextLoaderListener의 IoC 컨테이너는 
+        웹 관련 애노테이션을 처리하지 못한다.
+      - 따라서 @Component, @Controller, @Service 등의 애노테이션 붙은  
+        클래스에 대해 객체를 생성해 주지만,
+        @RequestMapping, @ResponseBody 등과 같은 
+        웹 관련 애노테이션은 인식하지 못한다.
+      - 따라서 페이지 컨트롤러의 요청 핸들러를 관리하는 일을 하지 못한다.
+  해결책?
+      - 웹관련 애노테이션을 처리할 도우미 객체를 따로 등록해야 한다.
+      - 즉 다음과 같이 WebMVC 관련 애노테이션을 처리할 도우미 객체를 등록하라.
+-->
+  <mvc:annotation-driven/>
+  
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
