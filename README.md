@@ -941,11 +941,23 @@ macOS 개발 환경 구축하기
 
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 45-c 버전 수행 : MVC 아키텍처로 전환하기 : 프론트 컨트롤러 도입하기
+  - 45-d 버전 수행 : MVC 아키텍처로 전환하기 : 페이지 컨트롤러를 POJO로 전환하기
 
+## 99일차(2020-12-11,금)
 
-## xx일차(2020-11-19,목)
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 46-a 버전 수행 : Spring WebMVC 프레임워크 도입하기 : DispatcherServlet 프론트 컨트롤러 적용
+  - 46-b 버전 수행 : MVC 아키텍처로 전환하기 : 페이지 컨트롤러에서 요청 파라미터 다루기
+
+## 100일차(2020-12-14,월)
 
 - 리플랙션 API 사용법
   - com.eomcs.reflect 패키지 예제
 - 애노테이션 사용법
   - com.eomcs.annotation 패키지 예제
+- Spring IoC 컨테이너 사용법
+  - com.eomcs.spring.ioc 패키지 예제
+
+## 101일차(2020-12-15,화)
+- Spring IoC 컨테이너 사용법
+  - com.eomcs.spring.ioc 패키지 예제(계속)
