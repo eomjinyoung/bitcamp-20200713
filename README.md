@@ -974,7 +974,7 @@ macOS 개발 환경 구축하기
 
 ## 103일차(2020-12-17,목)
 
-- Spring IoC 컨테이너 사용법
-  - com.eomcs.spring.ioc 패키지 예제(계속)
+- Spring WebMVC 사용법(eomcs-spring-webmvc)
+  - src-00 ~ src-12 
 - 예제 프로젝트 수행(bitcamp-java-project)
   - 46-c 버전 수행 : Spring WebMVC 프레임워크 도입하기 : Mybatis와 Spring을 연동하기
