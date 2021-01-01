@@ -1016,3 +1016,32 @@ macOS 개발 환경 구축하기
 
 - JavaScript 프로그래밍(eomcs-web-project)
   - /webapp/javascript/ex04 ~ ex08 예제
+
+## 110일차(2020-12-29,화)
+
+- facebook 로그인(eomcs-web-project)
+  - /webapp/facebook/ 예제
+- 예제 프로젝트 수행(bitcamp-java-project)
+  - 46-e 버전 수행 : Tiles 적용하기, AJAX, Facebook 로그인
+
+## 111일차(2020-12-30,수)
+
+- 클라우드 서버에 배치
+  - AWS EC2 인스턴스 생성
+  - openjdk 11 설치
+  - 톰캣 서버 설치
+  - git 설치
+  - gradle 설치
+  - 프로젝트 clone
+  - nodejs 설치
+  - npm install
+  - gradle build
+  - 서버에 배치 및 테스트
+- 도메인 발급 및 연결
+  - gabia.com 에서 도메인 구매
+  - 도메인에 AWS EC2 서버의 IP 연결
+
+## 112일차(2020-12-31,목)
+
+- 프로젝트 발표
+  
